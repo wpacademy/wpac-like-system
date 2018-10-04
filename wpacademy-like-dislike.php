@@ -49,8 +49,7 @@ function wpac_like_btn_ajax_action() {
         $post_id = $_POST['pid'];
 
          $check_like = $wpdb->get_var( $wpdb->prepare(
-            "SELECT COUNT(*) FROM %s WHERE user_id = %d AND post_id = %d AND like_count=1 ",
-              $table_name,
+            "SELECT COUNT(*) FROM ${$table_name} WHERE user_id = %d AND post_id = %d AND like_count=1 ",
               $user_id,
               $post_id
             ) );
@@ -97,8 +96,7 @@ function wpac_dislike_btn_ajax_action() {
         
     
          $check_dislike = $wpdb->get_var( $wpdb->prepare(
-            "SELECT COUNT(*) FROM %s WHERE user_id = %d AND post_id = %d AND dislike_count=1 ",
-              $table_name,
+            "SELECT COUNT(*) FROM ${$table_name} WHERE user_id = %d AND post_id = %d AND dislike_count=1 ",
               $user_id,
               $post_id
             ) );
