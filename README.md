@@ -11,7 +11,7 @@ You can even use it as is on your WordPress blogs to have a nice & simple like/d
 3. Activate the plugin through the `Plugins` menu in WordPress.
 
 ## Settings
-You can change button labels by visiting `WPAC Settings` Tab
+You can change button labels and other settings by visiting `WPAC Settings` Tab
 
 <img src="https://user-images.githubusercontent.com/38207694/46508463-16800a00-c857-11e8-90c0-e2d844731604.png" alt="WPAC Settings Screen">
 
