@@ -1,6 +1,6 @@
 <?php
 /*
-* Plugin Name: WPacademy Like/Dislike
+* Plugin Name: WPAC Like System
 * Plugin URI: https://github.com/wpacademy/wpac-like-system
 * Author: WPacademy.PK
 * Author URI: https://wpacademy.pk
