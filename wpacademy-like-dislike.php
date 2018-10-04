@@ -36,6 +36,9 @@ register_activation_hook( __FILE__, 'wpac_likes_table' );
 // Create Like & Dislike Buttons using filter.
 require plugin_dir_path( __FILE__ ). 'inc/btns.php';
 
+// Show Like & Dislike Count.
+require plugin_dir_path( __FILE__ ). 'inc/show-count.php';
+
 //WPAC Plugin Ajax Function for Like Button
 function wpac_like_btn_ajax_action() {
 
@@ -48,15 +51,10 @@ function wpac_like_btn_ajax_action() {
         $user_id = $_POST['uid'];
         $post_id = $_POST['pid'];
 
-         $check_like = $wpdb->get_var( $wpdb->prepare(
-            "SELECT COUNT(*) FROM %s WHERE user_id = %d AND post_id = %d AND like_count=1 ",
-              $table_name,
-              $user_id,
-              $post_id
-            ) );
+        $check_like = $wpdb->get_var( "SELECT COUNT(*) FROM $table_name WHERE user_id='$user_id' AND post_id='$post_id' AND like_count=1 " );
 
         if($check_like > 0) {
-            echo "Sorry, buyt you already liked this post!";
+            echo "Sorry, but you already liked this post!";
         }
         else {
             $wpdb->insert( 
@@ -96,12 +94,7 @@ function wpac_dislike_btn_ajax_action() {
         $post_id = $_POST['pid'];
         
     
-         $check_dislike = $wpdb->get_var( $wpdb->prepare(
-            "SELECT COUNT(*) FROM %s WHERE user_id = %d AND post_id = %d AND dislike_count=1 ",
-              $table_name,
-              $user_id,
-              $post_id
-            ) );
+        $check_dislike = $wpdb->get_var( "SELECT COUNT(*) FROM $table_name WHERE user_id='$user_id' AND post_id='$post_id' AND dislike_count=1 " );
         
         if($check_dislike > 0) {
             echo "Sorry, buyt you already disliked this post!";
@@ -131,17 +124,4 @@ function wpac_dislike_btn_ajax_action() {
 add_action('wp_ajax_wpac_dislike_btn_ajax_action', 'wpac_dislike_btn_ajax_action');
 add_action('wp_ajax_nopriv_wpac_dislike_btn_ajax_action', 'wpac_dislike_btn_ajax_action');
 
-function wpac_show_like_count($content){
-    if(is_single()) {
-        global $wpdb;
-        $table_name = $wpdb->prefix . "wpac_like_system";
-        $post_id = get_the_ID();
-        $like_count = $wpdb->get_var( "SELECT COUNT(*) FROM $table_name WHERE post_id='$post_id' AND like_count=1 " );
-        $dislike_count = $wpdb->get_var( "SELECT COUNT(*) FROM $table_name WHERE post_id='$post_id' AND dislike_count=1 " );
-        $like_count_result = "<center>This post has been liked <strong>".$like_count."</strong>, time(s) & disliked <strong>".$dislike_count."</strong> time(s) </center>";
-        $content .= $like_count_result;
-    }
-    return $content;
-}
-add_filter('the_content', 'wpac_show_like_count');
 ?>
