@@ -15,7 +15,6 @@
     padding: 20px;
     font-size: 20px;
     margin: 0 1%;
-    border: 1px solid #cccccc;
     background: #f8f8f8;
     text-align: center;
     text-transform: uppercase;
@@ -27,13 +26,23 @@
     text-decoration: none;
     color: inherit;
 }
-.wpac-like-btn:hover {
-    background: #2d8f58;
+.wpac-like-btn, .wpac-dislike-btn {
     color: #ffffff;
 }
-.wpac-dislike-btn:hover {
-    background: #fc5a51;
+.wpac-like-btn {
+    background-color: rgba(45, 143, 88, 0.8);
+}
+.wpac-dislike-btn {
+    background-color: rgb(252, 90, 81);
+}
+.wpac-like-btn:hover, .wpac-dislike-btn:hover {
     color: #ffffff;
+}
+.wpac-like-btn:hover {
+    background-color: rgba(45, 143, 88, 1);
+}
+.wpac-dislike-btn:hover {
+    background-color: rgb(224, 77, 69);
 }
 .wpac-ajax-response span {
     display: inline-block;

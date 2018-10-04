@@ -1,6 +1,27 @@
 /*
 * WPAC Like System Admin CSS
 */
+.wpac-plugin-settings-head {
+    padding: 15px !important;
+    background-color: #333333;
+    color: #f0f0f0;
+    display: block;
+    font-weight: bold !important;
+    text-shadow: 0px 0px 3px #000000;
+}
+.wpac-setting-form {
+    padding: 10px !important;
+    background: #fff;
+}
+.wpac-setting-form input[type=text]{
+    padding: 10px !important;
+    width: 80% !important;
+}
+.wpac-setting-form h2 {
+    font-size: 20px !important;
+    border-bottom: 1px solid #dddddd;
+    padding-bottom: 10px !important;
+}
 .wpac-short-code-notice {
     background-color: #f0f0f0;
     border: 1px solid #999999;

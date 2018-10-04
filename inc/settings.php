@@ -6,8 +6,8 @@ function wpac_settings_page_html() {
     }
     ?>
         <div class="wrap">
-            <h1 style="padding:10px; background:#333;color:#fff"><?= esc_html(get_admin_page_title()); ?></h1>
-            <form action="options.php" method="post">
+            <h1 class="wpac-plugin-settings-head"><?= esc_html(get_admin_page_title()); ?></h1>
+            <form action="options.php" method="post" class="wpac-setting-form">
                 <?php 
                     // output security fields for the registered setting "wpac-settings"
                     settings_fields( 'wpac-settings' );
