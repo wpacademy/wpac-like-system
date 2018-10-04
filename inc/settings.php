@@ -143,6 +143,7 @@ function wpac_button_position_cb(){
     $setting = get_option('wpac_button_position');
     $check_position = "";
     $position_label = "";
+    $position_style = "";
     if(isset($setting) & $setting == 1) {
         $position_value = 1;
         $position_label = "Before Content";
@@ -153,13 +154,14 @@ function wpac_button_position_cb(){
     } elseif(isset($setting) & $setting == 3){
         $position_value = 3;
         $position_label = "Custom";
+        $position_style = ' style="display: block"';
     } else {
         $position_value = "";
         $position_label = "";
     }
     // output the field
     ?>
-    <select name="wpac_button_position" id="btnPosition">
+    <select name="wpac_button_position" id="btnPosition" onchange="wpac_btn_position_select()">
         <?php if(isset($position_value) && $position_value != "") { ?>
         <option value="<?php echo $position_value ?>"><?php echo $position_label ?></option>
         <?php } ?>
@@ -167,6 +169,7 @@ function wpac_button_position_cb(){
         <option value="2">After Content</option>
         <option value="3">Custom</option>
     </select>
+    <pre class="wpac-short-code-notice"<?php echo $position_style ?>>Use this shortcode to display on custom location <strong>[WPAC_LIKE_BTNS]</strong></pre>
     <?php
 }
 function wpac_hide_like_button_cb(){ 

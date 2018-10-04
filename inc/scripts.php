@@ -8,9 +8,6 @@ if( !function_exists('wpac_plugin_scripts')) {
 
         //FontAwesome CSS
         wp_enqueue_style( 'wpac-font-awesome', WPAC_PLUGIN_DIR. 'assets/font-awesome/css/fontawesome-all.min.css', array(), NULL);
-        
-        //Plugin Frontend JS
-        wp_enqueue_script('wpac-js', WPAC_PLUGIN_DIR. 'assets/js/main.js', 'jQuery', '1.0.0', true );
 
         //Plugin Ajax JS
         wp_enqueue_script('wpac-ajax', WPAC_PLUGIN_DIR. 'assets/js/ajax.js', 'jQuery', '1.0.0', true );
@@ -20,4 +17,14 @@ if( !function_exists('wpac_plugin_scripts')) {
         ));
     }
     add_action('wp_enqueue_scripts', 'wpac_plugin_scripts');
+
+    function wpac_plugin_admin_scripts(){
+
+        //Plugin Back-end CSS
+        wp_enqueue_style('wpac-css', WPAC_PLUGIN_DIR. 'assets/css/main.css');
+        //Plugin Back-end JS
+        wp_enqueue_script('wpac-js', WPAC_PLUGIN_DIR. 'assets/js/main.js', 'jQuery', '1.0.0', true );
+
+    }
+    add_action( 'admin_enqueue_scripts', 'wpac_plugin_admin_scripts' );
 }

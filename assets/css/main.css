@@ -1,0 +1,10 @@
+/*
+* WPAC Like System Admin CSS
+*/
+.wpac-short-code-notice {
+    background-color: #f0f0f0;
+    border: 1px solid #999999;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+}

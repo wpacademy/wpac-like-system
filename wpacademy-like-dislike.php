@@ -51,7 +51,11 @@ function wpac_like_btn_ajax_action() {
         $user_id = $_POST['uid'];
         $post_id = $_POST['pid'];
 
-        $check_like = $wpdb->get_var( "SELECT COUNT(*) FROM $table_name WHERE user_id='$user_id' AND post_id='$post_id' AND like_count=1 " );
+        $check_like = $wpdb->get_var( $wpdb->prepare(
+            "SELECT COUNT(*) FROM `$table_name` WHERE user_id = %d AND post_id = %d AND like_count=1 ",
+            $user_id,
+            $post_id
+        ) );
 
         if($check_like > 0) {
             echo "Sorry, but you already liked this post!";
@@ -93,11 +97,15 @@ function wpac_dislike_btn_ajax_action() {
         $user_id = $_POST['uid'];
         $post_id = $_POST['pid'];
         
-    
-        $check_dislike = $wpdb->get_var( "SELECT COUNT(*) FROM $table_name WHERE user_id='$user_id' AND post_id='$post_id' AND dislike_count=1 " );
+
+        $check_dislike = $wpdb->get_var( $wpdb->prepare(
+            "SELECT COUNT(*) FROM `$table_name` WHERE user_id = %d AND post_id = %d AND dislike_count=1 ",
+            $user_id,
+            $post_id
+        ) );
         
         if($check_dislike > 0) {
-            echo "Sorry, buyt you already disliked this post!";
+            echo "Sorry, but you already disliked this post!";
         }
         else {
             $wpdb->insert(

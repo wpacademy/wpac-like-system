@@ -1,6 +1,7 @@
 /*
-* WPAC Like System CSS
+* WPAC Like System Front-end CSS
 */
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 .wpac-buttons-container {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -20,6 +21,7 @@
     text-transform: uppercase;
     color: #444444;
     transition: 0.5s all;
+    font-family: "Roboto", serif;
 }
 .wpac-btn:hover {
     text-decoration: none;

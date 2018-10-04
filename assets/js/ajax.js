@@ -38,6 +38,7 @@ function wpac_dislike_btn_ajax(postId,usrid) {
 				uid : usr_ID
 			},
 			success : function( response ) {
+				jQuery("#wpacAjaxResponse").fadeIn();
 				jQuery("#wpacAjaxResponse span").html(response);
 			}
 		});
