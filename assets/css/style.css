@@ -1,0 +1,47 @@
+/*
+* WPAC Like System CSS
+*/
+.wpac-buttons-container {
+    margin-top: 20px;
+}
+.wpac-btn {
+    display: inline-block;
+    width: 48%;
+    padding: 20px;
+    font-size: 20px;
+    margin: 0 1%;
+    border: 1px solid #cccccc;
+    background: #f8f8f8;
+    text-align: center;
+    text-transform: uppercase;
+    color: #444444;
+    transition: 0.5s all;
+}
+.wpac-btn:hover {
+    text-decoration: none;
+    color: inherit;
+}
+.wpac-like-btn:hover {
+    background: #2d8f58;
+    color: #ffffff;
+}
+.wpac-dislike-btn:hover {
+    background: #fc5a51;
+    color: #ffffff;
+}
+.wpac-ajax-response span {
+    display: inline-block;
+    margin: 10px;
+    text-align: center;
+    padding: 5px;
+    width: 100%;
+}
+.wpac-like-count-message {
+    margin: 20px 1% 0 1%;
+    font-size: 22px;
+    text-align: center;
+    width: 98%;
+    display: inline-block;
+    padding: 10px;
+    border: 1px solid #cccccc;
+}
