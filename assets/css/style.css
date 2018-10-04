@@ -3,6 +3,10 @@
 */
 .wpac-buttons-container {
     margin-top: 20px;
+    margin-bottom: 20px;
+}
+#wpacAjaxResponse {
+    display: none;
 }
 .wpac-btn {
     display: inline-block;
