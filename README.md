@@ -14,3 +14,6 @@ You can even use it as is on your WordPress blogs to have a nice & simple like/d
 You can change button labels by visiting `WPAC Settings` Tab
 
 <img src="https://user-images.githubusercontent.com/38207694/46483764-d6e2ff00-c811-11e8-9b13-c9f67d296d1e.png" alt="WPAC Settings Screen">
+
+## Changelog
+1.0.0 - Started the project
