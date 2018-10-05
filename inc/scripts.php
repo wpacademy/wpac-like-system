@@ -2,9 +2,9 @@
 
 if( !function_exists('wpac_plugin_scripts')) {
     function wpac_plugin_scripts() {
-
+        $user_id = get_current_user_id();
         //Plugin Frontend CSS
-        wp_enqueue_style('wpac-css', WPAC_PLUGIN_DIR. 'assets/css/style.css');
+        wp_enqueue_style('wpac-css', WPAC_PLUGIN_DIR. 'assets/css/front-end.css');
 
         //FontAwesome CSS
         wp_enqueue_style( 'wpac-font-awesome', WPAC_PLUGIN_DIR. 'assets/font-awesome/css/fontawesome-all.min.css', array(), NULL);
@@ -13,7 +13,8 @@ if( !function_exists('wpac_plugin_scripts')) {
         wp_enqueue_script('wpac-ajax', WPAC_PLUGIN_DIR. 'assets/js/ajax.js', 'jQuery', '1.0.0', true );
 
         wp_localize_script( 'wpac-ajax', 'wpac_ajax_url', array(
-            'ajax_url' => admin_url( 'admin-ajax.php' )
+            'ajax_url' => admin_url( 'admin-ajax.php' ),
+            'user_id'  => '1'
         ));
     }
     add_action('wp_enqueue_scripts', 'wpac_plugin_scripts');

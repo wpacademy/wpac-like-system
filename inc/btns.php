@@ -4,8 +4,8 @@ function wpac_like_dislike_buttons($content) {
 
     // Get display & position settings for buttons
     $btns_position = get_option('wpac_button_position', '2');
-    $like_btn_status = get_option('wpac_hide_like_button', 'on');
-    $dislike_btn_status = get_option('wpac_hide_dislike_button', 'on');
+    $like_btn_hide = get_option('wpac_hide_like_button', 'off');
+    $dislike_btn_hide = get_option('wpac_hide_dislike_button', 'off');
 
     // Fetch labels for buttons
     $like_btn_label = get_option( 'wpac_like_btn_label', 'Like' );
@@ -18,8 +18,17 @@ function wpac_like_dislike_buttons($content) {
     if(is_single()) {
         
         $btns_wrap_start = '<div class="wpac-buttons-container">';
-        $like_btn = '<a href="javascript:;" onclick="wpac_like_btn_ajax('.$post_id.', '.$user_id.')" class="wpac-btn wpac-like-btn"><i class="fas fa-thumbs-up"></i> '.$like_btn_label.'</a>';
-        $dislike_btn = '<a href="javascript:;" onclick="wpac_dislike_btn_ajax('.$post_id.', '.$user_id.')" class="wpac-btn wpac-dislike-btn">'.$dislike_btn_label.' <i class="fas fa-thumbs-down"></i></a>';
+
+        $like_btn = '<a href="javascript:;" onclick="wpac_like_btn_ajax('.$post_id.')" class="wpac-btn wpac-like-btn wpac-flat-btn">';
+        $like_btn .= '<span class="wpac-btn-icon"><i class="fas fa-thumbs-up"></i></span>';
+        $like_btn .= '<span class="wpac-btn-label">'.$like_btn_label.'</span>';
+        $like_btn .= '</a>';
+
+        $dislike_btn = '<a href="javascript:;" onclick="wpac_dislike_btn_ajax('.$post_id.')" class="wpac-btn wpac-dislike-btn wpac-flat-btn">';
+        $dislike_btn .= '<span class="wpac-btn-icon"><i class="fas fa-thumbs-down"></i></span>';
+        $dislike_btn .= '<span class="wpac-btn-label">'.$dislike_btn_label.'</span>';
+        $dislike_btn .= '</a>';
+        
         $btns_wrap_end = '</div>';
 
         $wpac_ajax_response = '<div id="wpacAjaxResponse" class="wpac-ajax-response"><span></span></div>';
@@ -28,12 +37,15 @@ function wpac_like_dislike_buttons($content) {
 
             $before_content_btns = "";
             $before_content_btns .= $btns_wrap_start;
-            if(isset($like_btn_status) && $like_btn_status !="on") {
-                $before_content_btns .= $like_btn;
+            if(isset($like_btn_hide) && $like_btn_hide =="on") {
+                $like_btn = "" ;
             }
-            if(isset($dislike_btn_status) && $dislike_btn_status !="on") {
-                $before_content_btns .= $dislike_btn;
+            if(isset($dislike_btn_hide) && $dislike_btn_hide =="on") {
+                $dislike_btn == "";
             }
+            $before_content_btns .= $like_btn;
+            $before_content_btns .= $dislike_btn;
+            
             $before_content_btns .= $btns_wrap_end;
             $before_content_btns .= $wpac_ajax_response;
 
@@ -42,12 +54,14 @@ function wpac_like_dislike_buttons($content) {
         } elseif(isset($btns_position) && $btns_position == 2) {
 
             $content .= $btns_wrap_start;
-            if(isset($like_btn_status) && $like_btn_status !="on") {
-                $content .= $like_btn;
+            if(isset($like_btn_hide) && $like_btn_hide =="on") {
+                $like_btn = "";
             }
-            if(isset($dislike_btn_status) && $dislike_btn_status !="on") {
-                $content .= $dislike_btn;
+            if(isset($dislike_btn_hide) && $dislike_btn_hide =="on") {
+                $dislike_btn = "";
             }
+            $content .= $like_btn;
+            $content .= $dislike_btn;
             $content .= $btns_wrap_end;
             $content .= $wpac_ajax_response;
 

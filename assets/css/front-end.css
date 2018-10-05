@@ -21,22 +21,56 @@
     color: #444444;
     transition: 0.5s all;
     font-family: "Roboto", serif;
+    position: relative;
+    font-weight: bold;
+}
+.wpac-btn-medium {
+    display: inline-block;
+    width: 48%;
+    max-width: 190px;
+    padding: 10px;
+    font-size: 14px;
+    margin: 0 1%;
+    background: #f8f8f8;
+    text-align: left;
+    text-transform: uppercase;
+    color: #444444;
+    transition: 0.5s all;
+    font-family: "Roboto", serif;
+    position: relative;
+    font-weight: bold;
 }
 .wpac-btn:hover {
     text-decoration: none;
     color: inherit;
 }
+.wpac-flat-btn .wpac-btn-icon {
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 20px 30px;
+}
+.wpac-btn-medium .wpac-btn-icon {
+    padding: 10px;
+}
+.wpac-btn-medium .wpac-btn-label {
+    margin-left: 35px;
+}
+.wpac-flat-btn.wpac-like-btn .wpac-btn-icon {
+    background: rgb(15, 122, 69);
+}
+.wpac-flat-btn.wpac-dislike-btn .wpac-btn-icon {
+    background-color: #ce504c;
+}
 .wpac-like-btn, .wpac-dislike-btn {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 .wpac-like-btn {
     background-color: rgba(45, 143, 88, 0.8);
 }
 .wpac-dislike-btn {
     background-color: rgb(252, 90, 81);
-}
-.wpac-like-btn:hover, .wpac-dislike-btn:hover {
-    color: #ffffff;
 }
 .wpac-like-btn:hover {
     background-color: rgba(45, 143, 88, 1);

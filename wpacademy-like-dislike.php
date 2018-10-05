@@ -58,7 +58,7 @@ function wpac_like_btn_ajax_action() {
         ) );
 
         if($check_like > 0) {
-            echo "Sorry, but you already liked this post!";
+            echo "Sorry, you already liked this post or you are not logged-in";
         }
         else {
             $wpdb->insert( 
@@ -105,22 +105,22 @@ function wpac_dislike_btn_ajax_action() {
         ) );
         
         if($check_dislike > 0) {
-            echo "Sorry, but you already disliked this post!";
+            echo "Sorry, you already disliked this post or you are not logged-in";
         }
         else {
             $wpdb->insert(
-                      ''.$table_name.'',
-                      array(
-                            'post_id' => $_POST['pid'],
-                            'user_id' => $_POST['uid'],
-                            'dislike_count' => 1
-                            ),
-                      array(
-                            '%d',
-                            '%d',
-                            '%d'
-                            )
-                      );
+                ''.$table_name.'',
+                array(
+                    'post_id' => $_POST['pid'],
+                    'user_id' => $_POST['uid'],
+                    'dislike_count' => 1
+                    ),
+                array(
+                    '%d',
+                    '%d',
+                    '%d'
+                    )
+            );
             if($wpdb->insert_id) {
                 echo "That's sad! :(";
             }
