@@ -15,5 +15,8 @@ You can change button labels and other settings by visiting `WPAC Settings` Tab
 
 <img src="https://user-images.githubusercontent.com/38207694/46508463-16800a00-c857-11e8-90c0-e2d844731604.png" alt="WPAC Settings Screen">
 
+## Shortcodes
+`[WPAC_LIKE_SYSTEM]` Display Like & Dislike buttons in post or page. 
+
 ## Changelog
 1.0.0 - Started the project

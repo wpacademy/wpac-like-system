@@ -177,7 +177,7 @@ function wpac_button_position_cb(){
         <option value="2">After Content</option>
         <option value="3">Custom</option>
     </select>
-    <pre class="wpac-short-code-notice"<?php echo $position_style ?>>Use this shortcode to display on custom location <strong>[WPAC_LIKE_BTNS]</strong></pre>
+    <pre class="wpac-short-code-notice"<?php echo $position_style ?>>Use this shortcode to display on custom location <strong>[WPAC_LIKE_SYSTEM]</strong></pre>
     <?php
 }
 // Button Display Setting Fields Functions

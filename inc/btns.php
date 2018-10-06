@@ -1,5 +1,5 @@
 <?php
-
+$btns_position = get_option('wpac_button_position', '2');
 function wpac_like_dislike_buttons($content) {
 
     // Get display & position settings for buttons
@@ -75,7 +75,7 @@ function wpac_like_dislike_buttons($content) {
             }
             $content = $before_content_btns . $content;
 
-        } elseif(isset($btns_position) && $btns_position == 2) {
+        } else {
 
             $content .= $btns_wrap_start;
             if(isset($like_btn_hide) && $like_btn_hide =="on") {
@@ -92,11 +92,18 @@ function wpac_like_dislike_buttons($content) {
                 $content .= $stat_count_string;
             }
 
-        } else {
-            $content = $content;
         }
     }
     return $content;
 
 }
-add_filter('the_content', 'wpac_like_dislike_buttons');
+function wpac_shortcode_position_notice(){
+    $notice = "<h3>You need to select CUSTOM location to use this SHORTCODE</h3>";
+    return $notice;
+}
+if($btns_position == 3) {
+    add_shortcode( 'WPAC_LIKE_SYSTEM' , 'wpac_like_dislike_buttons' );
+} else {
+    add_filter('the_content', 'wpac_like_dislike_buttons');
+    add_shortcode( 'WPAC_LIKE_SYSTEM' , 'wpac_shortcode_position_notice' );
+}
