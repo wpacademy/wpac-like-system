@@ -9,12 +9,13 @@
 #wpacAjaxResponse {
     display: none;
 }
-.wpac-btn {
+.wpac-btn-container {
     display: inline-block;
     width: 48%;
-    padding: 20px;
-    font-size: 20px;
     margin: 0 1%;
+}
+.wpac-btn {
+    display: flex;
     background: #f8f8f8;
     text-align: center;
     text-transform: uppercase;
@@ -45,11 +46,19 @@
     color: inherit;
 }
 .wpac-flat-btn .wpac-btn-icon {
-    display: inline-block;
-    position: absolute;
-    left: 0;
-    top: 0;
     padding: 20px 30px;
+    font-size: 20px;
+    float: left;
+    height: 100%;
+}
+.wpac-flat-btn .wpac-btn-label {
+    margin-left: 5px;
+    padding: 20px;
+    font-size: 20px;
+    float: left;
+    height: 100%;
+    text-align: center;
+    flex: 1;
 }
 .wpac-btn-medium .wpac-btn-icon {
     padding: 10px;
@@ -85,6 +94,15 @@
     padding: 5px;
     width: 100%;
 }
+.wpac-count-stats {
+    padding: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.wpac-count-stats p {
+    margin-bottom: 0;
+    font-size: 16px;
+}
 .wpac-like-count-message {
     margin: 20px 1% 0 1%;
     font-size: 22px;
@@ -93,4 +111,11 @@
     display: inline-block;
     padding: 10px;
     border: 1px solid #cccccc;
+}
+@media all and (max-width: 768px){
+    .wpac-btn-container {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
 }

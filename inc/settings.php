@@ -52,6 +52,7 @@ function wpac_plugin_settings(){
     register_setting( 'wpac-settings', 'wpac_button_position' );
     register_setting( 'wpac-settings', 'wpac_hide_like_button' );
     register_setting( 'wpac-settings', 'wpac_hide_dislike_button' );
+    register_setting( 'wpac-settings', 'wpac_stats_position' );
 
     // register a new section in the "wpac-setings" page
     add_settings_section(
@@ -106,6 +107,13 @@ function wpac_plugin_settings(){
         'wpac_hide_dislike_button_cb',
         'wpac-settings',
         'wpac_button_settings_section'
+    );
+    add_settings_field( 
+        'wpac_stats_position',
+        'Like & Dislike Count Position',
+        'wpac_stats_position_cb',
+        'wpac-settings',
+        'wpac_button_settings_section' 
     );
 }
 add_action('admin_init', 'wpac_plugin_settings');
@@ -170,6 +178,40 @@ function wpac_button_position_cb(){
         <option value="3">Custom</option>
     </select>
     <pre class="wpac-short-code-notice"<?php echo $position_style ?>>Use this shortcode to display on custom location <strong>[WPAC_LIKE_BTNS]</strong></pre>
+    <?php
+}
+// Button Display Setting Fields Functions
+function wpac_stats_position_cb(){ 
+    // get the value of the setting we've registered with register_setting()
+    $setting = get_option('wpac_stats_position');
+    $position_value = "";
+    $position_label = "";
+    if(isset($setting) & $setting == 1) {
+
+        $position_value = 1;
+        $position_label = "Below The Buttons";
+
+    } elseif(isset($setting) & $setting == 2){
+
+        $position_value = 2;
+        $position_label = "Inside The Buttons";
+
+    } else{
+
+        $position_value = 3;
+        $position_label = "Hide Stats";
+
+    } 
+    // output the field
+    ?>
+    <select name="wpac_stats_position" id="btnPosition" onchange="wpac_btn_position_select()">
+        <?php if(isset($position_value) && $position_value != "") { ?>
+        <option value="<?php echo $position_value ?>"><?php echo $position_label ?></option>
+        <?php } ?>
+        <option value="1">Below The Buttons</option>
+        <option value="2">Inside The Buttons</option>
+        <option value="3">Hide Stats</option>
+    </select>
     <?php
 }
 function wpac_hide_like_button_cb(){ 

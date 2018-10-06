@@ -14,6 +14,7 @@ function wpac_like_btn_ajax(postId,usrid) {
 			success : function( response ) {
 				jQuery("#wpacAjaxResponse").fadeIn();
 				jQuery("#wpacAjaxResponse span").html(response);
+				jQuery("#wpacAjaxResponse").delay(5000).fadeOut();
 			}
 		});
 	
@@ -34,6 +35,7 @@ function wpac_dislike_btn_ajax(postId,usrid) {
 		success : function( response ) {
 			jQuery("#wpacAjaxResponse").fadeIn();
 			jQuery("#wpacAjaxResponse span").html(response);
+			jQuery("#wpacAjaxResponse").delay(5000).fadeOut();
 		}
 	});
 	

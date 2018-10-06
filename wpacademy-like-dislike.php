@@ -23,59 +23,40 @@ if ( !defined('WPAC_PLUGIN_VERSION')) {
 if ( !defined('WPAC_PLUGIN_DIR')) {
     define('WPAC_PLUGIN_DIR', plugin_dir_url( __FILE__ ));
 }
+// Create Table for our plugin.
+require plugin_dir_path( __FILE__ ). 'inc/db.php';
+register_activation_hook( __FILE__, 'wpac_likes_table' );
+
+// Functions to performa database related quries.
+require plugin_dir_path( __FILE__ ). 'inc/db-functions.php';
+
 //Include Scripts & Styles
 require plugin_dir_path( __FILE__ ). 'inc/scripts.php';
 
 //Settings Menu & Page
 require plugin_dir_path( __FILE__ ). 'inc/settings.php';
 
-// Create Table for our plugin.
-require plugin_dir_path( __FILE__ ). 'inc/db.php';
-register_activation_hook( __FILE__, 'wpac_likes_table' );
-
 // Create Like & Dislike Buttons using filter.
 require plugin_dir_path( __FILE__ ). 'inc/btns.php';
 
-// Show Like & Dislike Count.
-require plugin_dir_path( __FILE__ ). 'inc/show-count.php';
 
 //WPAC Plugin Ajax Function for Like Button
 function wpac_like_btn_ajax_action() {
 
-    global $wpdb;
-    require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-
-    $table_name = $wpdb->prefix . "wpac_like_system";
     if(isset($_POST['pid']) && isset($_POST['uid'])) {
 
         $user_id = $_POST['uid'];
         $post_id = $_POST['pid'];
-
-        $check_like = $wpdb->get_var( $wpdb->prepare(
-            "SELECT COUNT(*) FROM `$table_name` WHERE user_id = %d AND post_id = %d AND like_count=1 ",
-            $user_id,
-            $post_id
-        ) );
-
+        $check_like = wpac_check_like($post_id, $user_id);
         if($check_like > 0) {
             echo "Sorry, you already liked this post or you are not logged-in";
         }
         else {
-            $wpdb->insert( 
-                ''.$table_name.'', 
-                array( 
-                    'post_id' => $_POST['pid'], 
-                    'user_id' => $_POST['uid'],
-                    'like_count' => 1
-                ), 
-                array( 
-                    '%d', 
-                    '%d',
-                    '%d'
-                )
-            );
-            if($wpdb->insert_id) {
-                echo "Thank you for loving this post!";
+            $insert_like = wpac_insert_new_like($user_id, $post_id);
+            if($insert_like == 1) {
+                echo "Thank you for likig this post";
+            } else {
+                echo "There was an error adding your like count, please try again or contact webmaster!";
             }
         }
         
@@ -87,42 +68,23 @@ add_action('wp_ajax_nopriv_wpac_like_btn_ajax_action', 'wpac_like_btn_ajax_actio
     
 //WPAC Plugin Ajax Function for DisLike Button
 function wpac_dislike_btn_ajax_action() {
-    
-    global $wpdb;
-    require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-    
-    $table_name = $wpdb->prefix . "wpac_like_system";
+  
     if(isset($_POST['pid']) && isset($_POST['uid'])) {
         
         $user_id = $_POST['uid'];
         $post_id = $_POST['pid'];
         
-
-        $check_dislike = $wpdb->get_var( $wpdb->prepare(
-            "SELECT COUNT(*) FROM `$table_name` WHERE user_id = %d AND post_id = %d AND dislike_count=1 ",
-            $user_id,
-            $post_id
-        ) );
+        $check_dislike = wpac_check_deslike($post_id, $user_id);
         
         if($check_dislike > 0) {
             echo "Sorry, you already disliked this post or you are not logged-in";
         }
         else {
-            $wpdb->insert(
-                ''.$table_name.'',
-                array(
-                    'post_id' => $_POST['pid'],
-                    'user_id' => $_POST['uid'],
-                    'dislike_count' => 1
-                    ),
-                array(
-                    '%d',
-                    '%d',
-                    '%d'
-                    )
-            );
-            if($wpdb->insert_id) {
-                echo "That's sad! :(";
+            $insert_like = wpac_insert_new_dislike($user_id, $post_id);
+            if($insert_like == 1) {
+                echo "Post has been disliked successfully!";
+            } else {
+                echo "There was an error adding your dislike count, please try again or contact webmaster!";
             }
         }
         
