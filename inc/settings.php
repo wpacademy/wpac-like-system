@@ -47,12 +47,12 @@ add_action('admin_menu', 'wpac_register_menu_page'); */
 function wpac_plugin_settings(){
 
     // register settings for "wpac-settings" page
-    register_setting( 'wpac-settings', 'wpac_like_btn_label' );
-    register_setting( 'wpac-settings', 'wpac_dislike_btn_label' );
-    register_setting( 'wpac-settings', 'wpac_button_position' );
-    register_setting( 'wpac-settings', 'wpac_hide_like_button' );
-    register_setting( 'wpac-settings', 'wpac_hide_dislike_button' );
-    register_setting( 'wpac-settings', 'wpac_stats_position' );
+    register_setting( 'wpac-settings', 'wpac_like_btn_label' ,['default' => 'Like']);
+    register_setting( 'wpac-settings', 'wpac_dislike_btn_label' ,['default' => 'Dislike']);
+    register_setting( 'wpac-settings', 'wpac_button_position' ,['default' => '2']);
+    register_setting( 'wpac-settings', 'wpac_hide_like_button' ,['default' => 'off']);
+    register_setting( 'wpac-settings', 'wpac_hide_dislike_button' ,['default' => 'off']);
+    register_setting( 'wpac-settings', 'wpac_stats_position' ,['default' => '1']);
 
     // register a new section in the "wpac-setings" page
     add_settings_section(
