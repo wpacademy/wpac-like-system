@@ -49,14 +49,14 @@ function wpac_like_btn_ajax_action() {
         $post_id = $_POST['pid'];
         $check_like = wpac_check_like($post_id, $user_id);
         if($check_like > 0) {
-            echo "Sorry, you already liked this post or you are not logged-in";
+            _e("Sorry, you already liked this post or you are not logged-in","wpacademy-likedisklike");
         }
         else {
             $insert_like = wpac_insert_new_like($user_id, $post_id);
             if($insert_like == 1) {
-                echo "Thank you for likig this post";
+                _e("Thank you for likig this post","wpacademy-likedisklike");
             } else {
-                echo "There was an error adding your like count, please try again or contact webmaster!";
+                _e("There was an error adding your like count, please try again or contact webmaster!","wpacademy-likedisklike");
             }
         }
         
@@ -77,14 +77,14 @@ function wpac_dislike_btn_ajax_action() {
         $check_dislike = wpac_check_deslike($post_id, $user_id);
         
         if($check_dislike > 0) {
-            echo "Sorry, you already disliked this post or you are not logged-in";
+            _e("Sorry, you already disliked this post or you are not logged-in","wpacademy-likedisklike");
         }
         else {
             $insert_like = wpac_insert_new_dislike($user_id, $post_id);
             if($insert_like == 1) {
-                echo "Post has been disliked successfully!";
+                _e("Post has been disliked successfully!","wpacademy-likedisklike");
             } else {
-                echo "There was an error adding your dislike count, please try again or contact webmaster!";
+                _e("There was an error adding your dislike count, please try again or contact webmaster!","wpacademy-likedisklike");
             }
         }
         
