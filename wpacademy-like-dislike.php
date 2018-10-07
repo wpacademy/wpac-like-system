@@ -27,6 +27,17 @@ if ( !defined('WPAC_PLUGIN_DIR')) {
 require plugin_dir_path( __FILE__ ). 'inc/db.php';
 register_activation_hook( __FILE__, 'wpac_likes_table' );
 
+// remove all option setting on deactivation
+register_deactivation_hook( __FILE__, function(){
+   
+    delete_option('wpac_like_btn_label');
+    delete_option('wpac_dislike_btn_label');
+    delete_option('wpac_button_position');
+    delete_option('wpac_hide_like_button');
+    delete_option('wpac_hide_dislike_button');
+    delete_option('wpac_stats_position');
+});
+
 // Functions to performa database related quries.
 require plugin_dir_path( __FILE__ ). 'inc/db-functions.php';
 
