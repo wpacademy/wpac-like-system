@@ -18,7 +18,7 @@ function wpac_like_btn_ajax_action() {
             ) );
 
         if($check_like > 0) {
-            echo "Sorry, but you already liked this post!";
+            _e("Sorry, but you already liked this post!","wpacademy-likedisklike");
         }
         else {
             $wpdb->insert( 
@@ -35,7 +35,7 @@ function wpac_like_btn_ajax_action() {
                 )
             );
             if($wpdb->insert_id) {
-                echo "Thank you for loving this post!";
+                _e("Thank you for loving this post!","wpacademy-likedisklike");
             }
         }
         
