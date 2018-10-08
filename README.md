@@ -2,7 +2,7 @@
 Simple Like &amp; Dislike Plugin for WordPress. :v:
 
 This plugin was created during basic course of <a href="https://wpacademy.pk/course/wordpress-plugin-development-for-beginners-in-urdu-hindi/" target="_blank">Plugin Development in Urdu</a>. Later we decided to distribute this code so students can use it and even try to improve it for educational purpose.
-You can even use it as--is on your WordPress blogs to have a nice & simple like/dislike system.
+You can even use it as-is on your WordPress blogs to have a nice & simple like/dislike system.
 
 ## Installation
 
@@ -17,6 +17,10 @@ You can change button labels and other settings by visiting `WPAC Settings` Tab
 
 ## Shortcodes
 `[WPAC_LIKE_SYSTEM]` Display Like & Dislike buttons in post or page. 
+`[WPAC_LIKE_COUNT]` Return Like count for current post being viewed.
+`[WPAC_LIKE_COUNT id="123"]` Return Like count for given post ID.
+`[WPAC_LIKE_COUNT id="123" string="Liked % times"]` Return Like count wrapped in a string, use `%` where you want to display count value.
+
 
 ## Changelog
 1.0.0 - Started the project

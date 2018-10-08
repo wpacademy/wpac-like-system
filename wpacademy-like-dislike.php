@@ -50,6 +50,9 @@ require plugin_dir_path( __FILE__ ). 'inc/settings.php';
 // Create Like & Dislike Buttons using filter.
 require plugin_dir_path( __FILE__ ). 'inc/btns.php';
 
+// WPAC Shortcodes.
+require plugin_dir_path( __FILE__ ). 'inc/shortcodes.php';
+
 
 //WPAC Plugin Ajax Function for Like Button
 function wpac_like_btn_ajax_action() {
@@ -59,8 +62,9 @@ function wpac_like_btn_ajax_action() {
         $user_id = $_POST['uid'];
         $post_id = $_POST['pid'];
         $check_like = wpac_check_like($post_id, $user_id);
-        if($check_like > 0) {
-            _e("Sorry, you already liked this post or you are not logged-in","wpacademy-likedisklike");
+        $check_dislike = wpac_check_deslike($post_id, $user_id);
+        if($check_like > 0 || $check_dislike > 0) {
+            _e("Sorry, you already liked/disliked this post or you are not logged-in","wpacademy-likedisklike");
         }
         else {
             $insert_like = wpac_insert_new_like($user_id, $post_id);
@@ -85,10 +89,11 @@ function wpac_dislike_btn_ajax_action() {
         $user_id = $_POST['uid'];
         $post_id = $_POST['pid'];
         
+        $check_like = wpac_check_like($post_id, $user_id);
         $check_dislike = wpac_check_deslike($post_id, $user_id);
         
-        if($check_dislike > 0) {
-            _e("Sorry, you already disliked this post or you are not logged-in","wpacademy-likedisklike");
+        if($check_dislike > 0 || $check_like > 0) {
+            _e("Sorry, you already liked/disliked this post or you are not logged-in","wpacademy-likedisklike");
         }
         else {
             $insert_like = wpac_insert_new_dislike($user_id, $post_id);

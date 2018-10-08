@@ -16,7 +16,6 @@ function wpac_count_likes($pid){
 }
 // Count total number of dislikes for given post ID
 function wpac_count_dislikes($pid){
-    if(is_single()) {
         global $wpdb;
 
         $table_name = $wpdb->prefix . "wpac_like_system";
@@ -26,7 +25,6 @@ function wpac_count_dislikes($pid){
             "SELECT COUNT(*) FROM `$table_name` WHERE post_id = %d AND dislike_count=1 ",
             $post_id
         ) );
-    }
     return $dislike_count;
 }
 // Check if a user has already liked the post
