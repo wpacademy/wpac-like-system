@@ -17,8 +17,11 @@ You can change button labels and other settings by visiting `WPAC Settings` Tab
 
 ## Shortcodes
 `[WPAC_LIKE_SYSTEM]` Display Like & Dislike buttons in post or page. 
+
 `[WPAC_LIKE_COUNT]` Return Like count for current post being viewed.
+
 `[WPAC_LIKE_COUNT id="123"]` Return Like count for given post ID.
+
 `[WPAC_LIKE_COUNT id="123" string="Liked % times"]` Return Like count wrapped in a string, use `%` where you want to display count value.
 
 
