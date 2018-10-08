@@ -38,6 +38,9 @@ register_deactivation_hook( __FILE__, function(){
     delete_option('wpac_stats_position');
 });
 
+// WPAC Validation Functions.
+require plugin_dir_path( __FILE__ ). 'inc/validate.php';
+
 // Functions to performa database related quries.
 require plugin_dir_path( __FILE__ ). 'inc/db-functions.php';
 
@@ -57,10 +60,11 @@ require plugin_dir_path( __FILE__ ). 'inc/shortcodes.php';
 //WPAC Plugin Ajax Function for Like Button
 function wpac_like_btn_ajax_action() {
 
-    if(isset($_POST['pid']) && isset($_POST['uid'])) {
+    if(isset($_POST['pid']) && isset($_POST['uid']) && wpac_check_post_id($_POST['pid']) && wpac_check_user($_POST['uid'])) {
 
-        $user_id = $_POST['uid'];
-        $post_id = $_POST['pid'];
+        $user_id = wp_strip_all_tags($_POST['uid']);
+        $post_id = wp_strip_all_tags($_POST['pid']);
+
         $check_like = wpac_check_like($post_id, $user_id);
         $check_dislike = wpac_check_deslike($post_id, $user_id);
         if($check_like > 0 || $check_dislike > 0) {
@@ -84,10 +88,10 @@ add_action('wp_ajax_nopriv_wpac_like_btn_ajax_action', 'wpac_like_btn_ajax_actio
 //WPAC Plugin Ajax Function for DisLike Button
 function wpac_dislike_btn_ajax_action() {
   
-    if(isset($_POST['pid']) && isset($_POST['uid'])) {
+    if(isset($_POST['pid']) && isset($_POST['uid']) && wpac_check_user($_POST['uid']) && wpac_check_post_id($_POST['pid'])) {
         
-        $user_id = $_POST['uid'];
-        $post_id = $_POST['pid'];
+        $user_id = wp_strip_all_tags($_POST['uid']);
+        $post_id = wp_strip_all_tags($_POST['pid']);
         
         $check_like = wpac_check_like($post_id, $user_id);
         $check_dislike = wpac_check_deslike($post_id, $user_id);

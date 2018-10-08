@@ -61,14 +61,14 @@ function wpac_insert_new_like($uid, $pid) {
     require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
     $table_name = $wpdb->prefix . "wpac_like_system";
 
-    $user_id = $uid;
-    $post_id = $pid;
+    $user_id = wp_strip_all_tags($uid);
+    $post_id = wp_strip_all_tags($pid);
 
     $status = 0;
     $wpdb->insert( 
         ''.$table_name.'', 
         array( 
-            'post_id' => $post_id, 
+            'post_id' => $post_id,
             'user_id' => $user_id,
             'like_count' => 1
         ), 
@@ -93,15 +93,15 @@ function wpac_insert_new_dislike($uid, $pid) {
     require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
     $table_name = $wpdb->prefix . "wpac_like_system";
 
-    $user_id = $uid;
-    $post_id = $pid;
+    $user_id = wp_strip_all_tags($uid);
+    $post_id = wp_strip_all_tags($pid);
 
     $status = 0;
     $wpdb->insert(
         ''.$table_name.'',
         array(
-            'post_id' => $_POST['pid'],
-            'user_id' => $_POST['uid'],
+            'post_id' => $post_id,
+            'user_id' => $user_id,
             'dislike_count' => 1
             ),
         array(

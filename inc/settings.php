@@ -120,10 +120,10 @@ add_action('admin_init', 'wpac_plugin_settings');
 
 // Section callback functions
 function wpac_label_settings_section_cb(){
-    echo '<p>Define Button Labels</p>';
+    _e('<p>Define Button Labels</p>', 'wpaclike');
 }
 function wpac_button_settings_section_cb(){
-    echo '<p>Button position and display settings</p>';
+    _e('<p>Button position and display settings</p>', 'wpaclike');
 }
 // Field callback functions
 // Button Label Fields Callback Functions
