@@ -26,8 +26,8 @@ function wpac_count_dislikes($pid){
             "SELECT COUNT(*) FROM `$table_name` WHERE post_id = %d AND dislike_count=1 ",
             $post_id
         ) );
+        return $dislike_count;
     }
-    return $dislike_count;
 }
 // Check if a user has already liked the post
 function wpac_check_like($pid, $uid) {
