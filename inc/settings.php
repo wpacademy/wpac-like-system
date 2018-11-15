@@ -21,7 +21,7 @@ function wpac_settings_page_html() {
                 ?>
             </form>
         </div>
-    <?
+    <?php
 
 }
 
