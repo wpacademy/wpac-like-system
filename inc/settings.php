@@ -21,7 +21,7 @@ function wpac_settings_page_html() {
                 ?>
             </form>
         </div>
-    <?
+    <?php
 
 }
 
@@ -37,11 +37,6 @@ function wpac_register_menu_page() {
 }
 add_action('admin_menu', 'wpac_register_menu_page');
 
-//Sub-Level Administration Menu
-/* function wpac_register_menu_page() {
-    add_theme_page( 'WPAC Like System', 'WPAC Settings', 'manage_options', 'wpac-settings', 'wpac_settings_page_html', 30 );
-}
-add_action('admin_menu', 'wpac_register_menu_page'); */
 
 // Register settings, sections & fields.
 function wpac_plugin_settings(){
@@ -53,6 +48,12 @@ function wpac_plugin_settings(){
     register_setting( 'wpac-settings', 'wpac_hide_like_button' ,['default' => 'off']);
     register_setting( 'wpac-settings', 'wpac_hide_dislike_button' ,['default' => 'off']);
     register_setting( 'wpac-settings', 'wpac_stats_position' ,['default' => '1']);
+    register_setting( 'wpac-settings', 'wpac_like_count' ,['default' => 'This post has been Liked ']);
+    register_setting( 'wpac-settings', 'wpac_dislike_count' ,['default' => '& Disliked ']);
+    register_setting( 'wpac-settings', 'wpac_after_count_caption' ,['default' => 'time(s) ']);
+    register_setting( 'wpac-settings', 'wpac_click_btn' ,['default' => 'Sorry, you already liked/disliked this post or you are not logged-in']);
+    register_setting( 'wpac-settings', 'wpac_click_like_btn' ,['default' => 'Thank you for likig this post']);
+    register_setting( 'wpac-settings', 'wpac_click_dislike_btn' ,['default' => 'Post has been disliked successfully!']);
 
     // register a new section in the "wpac-setings" page
     add_settings_section(
@@ -65,6 +66,12 @@ function wpac_plugin_settings(){
         'wpac_button_settings_section',
         'WPAC Button Settings',
         'wpac_button_settings_section_cb',
+        'wpac-settings'
+    );
+    add_settings_section(
+        'wpac_message_settings_section',
+        'WPAC Messages Customize',
+        'wpac_message_settings_section_cb',
         'wpac-settings'
     );
 
@@ -114,6 +121,50 @@ function wpac_plugin_settings(){
         'wpac_stats_position_cb',
         'wpac-settings',
         'wpac_button_settings_section' 
+    );
+
+    //meassge customize 
+    add_settings_field(
+        'wpac_like_count_label_field',
+        'Meassage befor Like Count',
+        'wpac_message_like_count_section_cb',
+        'wpac-settings',
+        'wpac_message_settings_section'
+    );
+    add_settings_field(
+        'wpac_dislike_count_label_field',
+        'Message Before Dislike Count',
+        'wpac_message_dislike_count_section_cb',
+        'wpac-settings',
+        'wpac_message_settings_section'
+    );
+    add_settings_field(
+        'wpac_after_count_label_field',
+        'After Count Caption',
+        'wpac_message_after_count_section_cb',
+        'wpac-settings',
+        'wpac_message_settings_section'
+    );
+    add_settings_field(
+        'wpac_after_click_btn',
+        'Message if User Already Like/Disklike',
+        'wpac_message_click_btn_cb',
+        'wpac-settings',
+        'wpac_message_settings_section'
+    );
+    add_settings_field(
+        'wpac_after_click_like_btn',
+        'Like Succes message',
+        'wpac_message_click_like_btn_cb',
+        'wpac-settings',
+        'wpac_message_settings_section'
+    );
+    add_settings_field(
+        'wpac_after_click_dislike_btn',
+        'Disklike Succes message',
+        'wpac_message_click__dislike_btn_cb',
+        'wpac-settings',
+        'wpac_message_settings_section'
     );
 }
 add_action('admin_init', 'wpac_plugin_settings');
@@ -237,4 +288,55 @@ function wpac_hide_dislike_button_cb(){
     ?>
     <input type="checkbox" name="wpac_hide_dislike_button" <?php echo ( $check_status )?>>
     <?php
+}
+function wpac_message_settings_section_cb(){
+    _e('<p>Custom your font end messages / notice</p>', 'wpaclike');
+}
+function wpac_message_like_count_section_cb(){
+     // get the value of the setting we've registered with register_setting()
+     $setting = get_option('wpac_like_count');
+     // output the field
+     ?>
+     <input type="text" name="wpac_like_count" value="<?php echo isset( $setting ) ? esc_attr( $setting ) : ''; ?>">
+     <?php
+}
+function wpac_message_dislike_count_section_cb(){
+     // get the value of the setting we've registered with register_setting()
+     $setting = get_option('wpac_dislike_count');
+     // output the field
+     ?>
+     <input type="text" name="wpac_dislike_count" value="<?php echo isset( $setting ) ? esc_attr( $setting ) : ''; ?>">
+     <?php
+}
+function wpac_message_after_count_section_cb(){
+     // get the value of the setting we've registered with register_setting()
+     $setting = get_option('wpac_after_count_caption');
+     // output the field
+     ?>
+     <input type="text" name="wpac_after_count_caption" value="<?php echo isset( $setting ) ? esc_attr( $setting ) : ''; ?>">
+     <?php
+}
+function wpac_message_click_btn_cb(){
+     // get the value of the setting we've registered with register_setting()
+     $setting = get_option('wpac_click_btn');
+     // output the field
+     ?>
+     <input type="text" name="wpac_click_btn" value="<?php echo isset( $setting ) ? esc_attr( $setting ) : ''; ?>">
+     <?php
+}
+function wpac_message_click_like_btn_cb(){
+     // get the value of the setting we've registered with register_setting()
+     $setting = get_option('wpac_click_like_btn');
+     // output the field
+     ?>
+     <input type="text" name="wpac_click_like_btn" value="<?php echo isset( $setting ) ? esc_attr( $setting ) : ''; ?>">
+     <?php
+}
+function wpac_message_click__dislike_btn_cb(){
+     // get the value of the setting we've registered with register_setting()
+     $setting = get_option('wpac_click_dislike_btn');
+     // output the field
+     ?>
+     <input type="text" name="wpac_click_dislike_btn" value="<?php echo isset( $setting ) ? esc_attr( $setting ) : ''; ?>">
+     <?php
 }
