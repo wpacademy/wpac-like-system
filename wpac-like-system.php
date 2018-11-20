@@ -59,7 +59,8 @@ require plugin_dir_path( __FILE__ ). 'inc/shortcodes.php';
 
 //WPAC Plugin Ajax Function for Like Button
 function wpac_like_btn_ajax_action() {
-
+    $like_click = get_option('wpac_click_btn');
+    $like_click_success = get_option('wpac_click_like_btn');
     if(isset($_POST['pid']) && isset($_POST['uid']) && wpac_check_post_id($_POST['pid']) && wpac_check_user($_POST['uid'])) {
 
         $user_id = intval($_POST['uid']);
@@ -81,12 +82,12 @@ function wpac_like_btn_ajax_action() {
         $check_like = wpac_check_like($post_id, $user_id);
         $check_dislike = wpac_check_deslike($post_id, $user_id);
         if($check_like > 0 || $check_dislike > 0) {
-            _e("Sorry, you already liked/disliked this post or you are not logged-in","wpacademy-likedisklike");
+            _e( $like_click ,"wpacademy-likedisklike");
         }
         else {
             $insert_like = wpac_insert_new_like($user_id, $post_id);
             if($insert_like == 1) {
-                _e("Thank you for likig this post","wpacademy-likedisklike");
+                _e( $like_click_success ,"wpacademy-likedisklike");
             } else {
                 _e("There was an error adding your like count, please try again or contact webmaster!","wpacademy-likedisklike");
             }
@@ -100,7 +101,8 @@ add_action('wp_ajax_nopriv_wpac_like_btn_ajax_action', 'wpac_like_btn_ajax_actio
     
 //WPAC Plugin Ajax Function for DisLike Button
 function wpac_dislike_btn_ajax_action() {
-  
+    $like_click = get_option('wpac_click_btn');
+    $dislike_click_success = get_option('wpac_click_dislike_btn');
     if(isset($_POST['pid']) && isset($_POST['uid']) && wpac_check_user($_POST['uid']) && wpac_check_post_id($_POST['pid'])) {
         
         $user_id = wp_strip_all_tags($_POST['uid']);
@@ -110,12 +112,12 @@ function wpac_dislike_btn_ajax_action() {
         $check_dislike = wpac_check_deslike($post_id, $user_id);
         
         if($check_dislike > 0 || $check_like > 0) {
-            _e("Sorry, you already liked/disliked this post or you are not logged-in","wpacademy-likedisklike");
+            _e( $like_click ,"wpacademy-likedisklike");
         }
         else {
             $insert_like = wpac_insert_new_dislike($user_id, $post_id);
             if($insert_like == 1) {
-                _e("Post has been disliked successfully!","wpacademy-likedisklike");
+                _e($dislike_click_success ,"wpacademy-likedisklike");
             } else {
                 _e("There was an error adding your dislike count, please try again or contact webmaster!","wpacademy-likedisklike");
             }

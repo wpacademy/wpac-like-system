@@ -7,6 +7,9 @@ function wpac_like_dislike_buttons($content) {
     $like_btn_hide = get_option('wpac_hide_like_button', 'off');
     $dislike_btn_hide = get_option('wpac_hide_dislike_button', 'off');
     $stat_position = get_option('wpac_stats_position', '1');
+    $like_counte = get_option('wpac_like_count');
+    $dislike_counte = get_option('wpac_dislike_count');
+    $count_caption = get_option('wpac_after_count_caption');
 
     // Fetch labels for buttons
     $like_btn_label = get_option( 'wpac_like_btn_label', 'Like' );
@@ -50,7 +53,7 @@ function wpac_like_dislike_buttons($content) {
         $btns_wrap_end = '</div>';
 
         if($stat_position == 1) {
-            $stat_count_string = '<div class="wpac-count-stats"><p>This post has been Liked <strong>'.$like_count.'</strong> time(s) & Disliked <strong>'.$dislike_count.'</strong> time(s)</p></div>';
+            $stat_count_string = '<div class="wpac-count-stats"><p>'. $like_counte .' <strong>'.$like_count.' </strong> '. $count_caption .' '. $dislike_counte . ' <strong> '. $dislike_count.'</strong> '. $count_caption .' </p></div>';
         }
 
         $wpac_ajax_response = '<div id="wpacAjaxResponse" class="wpac-ajax-response"><span></span></div>';
