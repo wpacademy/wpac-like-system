@@ -1,6 +1,5 @@
 <?php
 // Validation functions
-
 function wpac_check_user($uid) {
 
     // scenario 1: empty
