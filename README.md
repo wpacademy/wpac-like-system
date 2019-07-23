@@ -13,7 +13,7 @@ Not Only Like System, this plugin now has a Reaction System as well. Add beautif
 ## Settings
 You can change button labels and other settings by visiting `WPAC Settings` Tab
 
-<img src="https://user-images.githubusercontent.com/38207694/46508463-16800a00-c857-11e8-90c0-e2d844731604.png" alt="WPAC Settings Screen">
+<img src="https://user-images.githubusercontent.com/38207694/61747890-5ef1bf80-adb8-11e9-8299-12e57f4bce63.png" alt="WPAC Settings Screen">
 
 ## Shortcodes
 `[WPAC_LIKE_SYSTEM]` Display Like & Dislike buttons in post or page. 
