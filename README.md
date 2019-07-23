@@ -32,5 +32,6 @@ You can change button labels and other settings by visiting `WPAC Settings` Tab
 
 
 ## Changelog
-2.0.0 - Added Reaction System, New Shortcode and Fixed Bugs.
-1.0.0 - Started the project
+
+1. 2.0.0 - Added Reaction System, New Shortcode and Fixed Bugs.
+2. 1.0.0 - Started the project
