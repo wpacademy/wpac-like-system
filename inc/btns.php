@@ -6,7 +6,7 @@ function wpac_like_dislike_buttons($content) {
     $btns_position = get_option('wpac_button_position', '2');
     $like_btn_hide = get_option('wpac_hide_like_button', 'off');
     $dislike_btn_hide = get_option('wpac_hide_dislike_button', 'off');
-    $stat_position = get_option('wpac_stats_position', '1');
+    $like_dislike_count = get_option('wpac_like_dislike_count', 'on');
 
     // Fetch labels for buttons
     $like_btn_label = get_option( 'wpac_like_btn_label', 'Like' );
@@ -15,19 +15,19 @@ function wpac_like_dislike_buttons($content) {
     $user_id = get_current_user_id();
     $post_id = get_the_ID();
     $like_count = wpac_count_likes($post_id);
-    $like_count = number_format($like_count);
+    $like_count = wpac_format_reaction_numbers($like_count);
     $dislike_count = wpac_count_dislikes($post_id);
-    $dislike_count  = number_format($dislike_count);
+    $dislike_count  = wpac_format_reaction_numbers($dislike_count);
 
     // Make sure single post is being viewed.
     if(is_single()) {
         
         $btns_wrap_start = '<div class="wpac-buttons-container">';
         $like_btn = '<div class="wpac-btn-container">';
-        $like_btn .= '<a href="javascript:;" onclick="wpac_like_btn_ajax('.$post_id.')" class="wpac-btn wpac-like-btn wpac-flat-btn">';
+        $like_btn .= '<a href="javascript:" onclick="wpac_like_btn_ajax('.$post_id.')" class="wpac-btn wpac-like-btn wpac-flat-btn">';
 
-        if($stat_position == 2) {
-            $like_btn .= '<span class="wpac-btn-icon"><i class="fas fa-thumbs-up"></i> '.$like_count.' </span>';
+        if($like_dislike_count == "on") {
+            $like_btn .= '<span class="wpac-btn-icon"><i class="fas fa-thumbs-up"></i><span id="wpacLikeCount">'.$like_count.'</span></span>';
 
         } else {
             $like_btn .= '<span class="wpac-btn-icon"><i class="fas fa-thumbs-up"></i></span>';
@@ -37,10 +37,10 @@ function wpac_like_dislike_buttons($content) {
         $like_btn .= '</div>';
 
         $dislike_btn = '<div class="wpac-btn-container">';
-        $dislike_btn .= '<a href="javascript:;" onclick="wpac_dislike_btn_ajax('.$post_id.')" class="wpac-btn wpac-dislike-btn wpac-flat-btn">';
+        $dislike_btn .= '<a href="javascript:" onclick="wpac_dislike_btn_ajax('.$post_id.')" class="wpac-btn wpac-dislike-btn wpac-flat-btn">';
         
-        if($stat_position == 2) {
-            $dislike_btn .= '<span class="wpac-btn-icon"><i class="fas fa-thumbs-down"></i> '.$dislike_count.' </span>';
+        if($like_dislike_count == "on") {
+            $dislike_btn .= '<span class="wpac-btn-icon"><i class="fas fa-thumbs-down"></i><span id="wpacDislikeCount">'.$dislike_count.'</span></span>';
         } else {
             $dislike_btn .= '<span class="wpac-btn-icon"><i class="fas fa-thumbs-down"></i></span>';
         }
@@ -48,10 +48,6 @@ function wpac_like_dislike_buttons($content) {
         $dislike_btn .= '</a>';
         $dislike_btn .= '</div>';
         $btns_wrap_end = '</div>';
-
-        if($stat_position == 1) {
-            $stat_count_string = '<div class="wpac-count-stats"><p>This post has been Liked <strong>'.$like_count.'</strong> time(s) & Disliked <strong>'.$dislike_count.'</strong> time(s)</p></div>';
-        }
 
         $wpac_ajax_response = '<div id="wpacAjaxResponse" class="wpac-ajax-response"><span></span></div>';
 
@@ -70,9 +66,7 @@ function wpac_like_dislike_buttons($content) {
             
             $before_content_btns .= $btns_wrap_end;
             $before_content_btns .= $wpac_ajax_response;
-            if($stat_position == 1) {
-                $before_content_btns .= $stat_count_string;
-            }
+            
             $content = $before_content_btns . $content;
 
         } else {
@@ -88,9 +82,6 @@ function wpac_like_dislike_buttons($content) {
             $content .= $dislike_btn;
             $content .= $btns_wrap_end;
             $content .= $wpac_ajax_response;
-            if($stat_position == 1) {
-                $content .= $stat_count_string;
-            }
 
         }
     }

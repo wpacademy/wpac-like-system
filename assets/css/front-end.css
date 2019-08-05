@@ -3,8 +3,9 @@
 */
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 .wpac-buttons-container, .wpac-reactions-container {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    width: 100%;
+    clear: both;
+    padding: 20px 0;
 }
 .wpac-reactions-container {
     text-align: center;
@@ -27,6 +28,22 @@
     margin: 0 5px;
     border: 2px solid #ededed;
     border-radius: 50%;
+}
+.emoji-reactions .wpac-reaction-icon-box {
+    border: none;
+    width: 48px;
+    height: 48px;
+    margin-right: 10px;
+}
+.emoji-reactions .wpac-reaction-icon-box .wpac-reaction-icon {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    position: relative;
+    z-index: 99;
+}
+.emoji-reactions .wpac-reaction-icon-box .wpac-reaction-icon img {
+    max-width: 100%;
 }
 .wpac-reaction {
     display: block;
@@ -65,6 +82,7 @@
     display: none;
     text-overflow: ellipsis;
     white-space: nowrap;
+    font-family: "Roboto", sans-serif;
 }
 .wpac-reation-tooltip::after {
     content: "";
@@ -94,6 +112,12 @@
     right: -7px;
     line-height: 15px;
     font-family: "Roboto", serif;
+    font-family: "Roboto", sans-serif;
+}
+.emoji-reactions .wpac-reaction-count {
+    top: -3px;
+    right: -10px;
+    z-index: 1;
 }
 .colorful-reactions .wpac-reaction .wpac-reaction-count {
     background: #ffffff;
@@ -143,6 +167,7 @@
     height: 100%;
     text-align: center;
     flex: 1;
+    font-family: "Roboto", sans-serif;
 }
 .wpac-btn-medium .wpac-btn-icon {
     padding: 10px;
@@ -152,12 +177,32 @@
 }
 .wpac-flat-btn.wpac-like-btn .wpac-btn-icon {
     background: rgb(15, 122, 69);
+    position: relative;
 }
 .wpac-flat-btn.wpac-dislike-btn .wpac-btn-icon {
     background-color: #ce504c;
+    position: relative;
+}
+.wpac-flat-btn.wpac-like-btn .wpac-btn-icon #wpacLikeCount, .wpac-flat-btn.wpac-dislike-btn .wpac-btn-icon #wpacDislikeCount {
+    font-size: 14px;
+    width: 36px;
+    height: 36px;
+    line-height: 38px;
+    text-align: center;
+    color: #333333;
+    background: #ffffff;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    margin-top: -18px;
+    right: -18px;
+    font-family: "Roboto", sans-serif;
+    text-transform: lowercase;
 }
 .wpac-like-btn, .wpac-dislike-btn {
     color: #ffffff !important;
+    font-family: "Roboto", sans-serif;
 }
 .wpac-like-btn {
     background-color: rgba(45, 143, 88, 0.8);
@@ -178,6 +223,7 @@
     padding: 5px;
     width: 100%;
     font-size: 16px;
+    font-family: "Roboto", sans-serif;
 }
 .wpac-count-stats {
     padding: 5px;
@@ -187,6 +233,7 @@
 .wpac-count-stats p {
     margin-bottom: 0;
     font-size: 16px;
+    font-family: "Roboto", sans-serif;
 }
 .wpac-like-count-message {
     margin: 20px 1% 0 1%;
@@ -196,6 +243,7 @@
     display: inline-block;
     padding: 10px;
     border: 1px solid #cccccc;
+    font-family: "Roboto", sans-serif;
 }
 @media all and (max-width: 768px){
     .wpac-btn-container {

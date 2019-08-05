@@ -20,9 +20,6 @@ function wpac_reactions_system($content) {
     $user_id = get_current_user_id();
     $post_id = get_the_ID();
 
-    $reactions_count = wpac_count_total_reactions($post_id);
-    $reactions_count = wpac_format_reaction_numbers($reactions_count);
-
     $like_reactions = wpac_reaction_count($post_id, 1);
     $like_reactions = wpac_format_reaction_numbers($like_reactions);
 
@@ -45,16 +42,20 @@ function wpac_reactions_system($content) {
     if(is_single()) {
 
             if($reactions_style == 2){
-                $reactions_wrap_start = '<div class="wpac-reactions-container colorful-reactions">';
+                $reactions_wrap_start = '<div class="wpac-reactions-container emoji-reactions">';
             } else {
-                $reactions_wrap_start = '<div class="wpac-reactions-container">';
+                $reactions_wrap_start = '<div class="wpac-reactions-container font-reactions">';
             }
 
             //Like Reaction Button
             $like_reaction = '<div class="wpac-reaction-icon-box wpac-like-reaction">';
                 $like_reaction .= '<a href="javascript:" onclick="wpac_save_reaction_ajax('.$post_id.',1)" class="wpac-reaction">';
 
-                    $like_reaction .= '<span class="wpac-reaction-icon"><i class="far fa-smile"></i></span>';
+                    if($reactions_style == 2){
+                        $like_reaction .= '<span class="wpac-reaction-icon"><img src="'.WPAC_PLUGIN_DIR.'/assets/img/emoji_like_1.png" alt="Like Reaction"></span>';
+                    } else {
+                        $like_reaction .= '<span class="wpac-reaction-icon"><i class="far fa-smile"></i></span>';
+                    }
                     if($hide_reaction_stats != "on") {
                         $like_reaction .= '<span class="wpac-reaction-count">'.$like_reactions.'</span>';
                     }
@@ -69,7 +70,11 @@ function wpac_reactions_system($content) {
             $love_reaction = '<div class="wpac-reaction-icon-box wpac-love-reaction">';
                 $love_reaction .= '<a href="javascript:" onclick="wpac_save_reaction_ajax('.$post_id.',2)" class="wpac-reaction">';
 
-                    $love_reaction .= '<span class="wpac-reaction-icon"><i class="far fa-grin-hearts"></i></span>';
+                    if($reactions_style == 2){
+                        $love_reaction .= '<span class="wpac-reaction-icon"><img src="'.WPAC_PLUGIN_DIR.'/assets/img/emoji_love_1.png" alt="Like Reaction"></span>';
+                    } else {
+                        $love_reaction .= '<span class="wpac-reaction-icon"><i class="far fa-grin-hearts"></i></span>';
+                    }
                     if($hide_reaction_stats != "on") {
                         $love_reaction .= '<span class="wpac-reaction-count">'.$heart_reactions.'</span>';
                     }
@@ -84,7 +89,11 @@ function wpac_reactions_system($content) {
             $laugh_reaction = '<div class="wpac-reaction-icon-box wpac-laugh-reaction">';
                 $laugh_reaction .= '<a href="javascript:" onclick="wpac_save_reaction_ajax('.$post_id.',3)" class="wpac-reaction">';
 
-                    $laugh_reaction .= '<span class="wpac-reaction-icon"><i class="far fa-grin-squint-tears"></i></span>';
+                    if($reactions_style == 2){
+                        $laugh_reaction .= '<span class="wpac-reaction-icon"><img src="'.WPAC_PLUGIN_DIR.'/assets/img/emoji_laugh_1.png" alt="Like Reaction"></span>';
+                    } else {
+                        $laugh_reaction .= '<span class="wpac-reaction-icon"><i class="far fa-grin-squint-tears"></i></span>';
+                    }
                     if($hide_reaction_stats != "on") {
                         $laugh_reaction .= '<span class="wpac-reaction-count">'.$laugh_reactions.'</span>';
                     }
@@ -99,7 +108,11 @@ function wpac_reactions_system($content) {
             $amazed_reaction = '<div class="wpac-reaction-icon-box wpac-amazed-reaction">';
                 $amazed_reaction .= '<a href="javascript:" onclick="wpac_save_reaction_ajax('.$post_id.',4)" class="wpac-reaction">';
 
-                    $amazed_reaction .= '<span class="wpac-reaction-icon"><i class="far fa-flushed"></i></span>';
+                    if($reactions_style == 2){
+                        $amazed_reaction .= '<span class="wpac-reaction-icon"><img src="'.WPAC_PLUGIN_DIR.'/assets/img/emoji_shocked_1.png" alt="Like Reaction"></span>';
+                    } else {
+                        $amazed_reaction .= '<span class="wpac-reaction-icon"><i class="far fa-flushed"></i></span>';
+                    }
                     if($hide_reaction_stats != "on") {
                         $amazed_reaction .= '<span class="wpac-reaction-count">'.$amazed_reactions.'</span>';
                     }
@@ -114,7 +127,11 @@ function wpac_reactions_system($content) {
             $sad_reaction = '<div class="wpac-reaction-icon-box wpac-sad-reaction">';
                 $sad_reaction .= '<a href="javascript:" onclick="wpac_save_reaction_ajax('.$post_id.',5)" class="wpac-reaction">';
 
-                    $sad_reaction .= '<span class="wpac-reaction-icon"><i class="far fa-sad-tear"></i></span>';
+                    if($reactions_style == 2){
+                        $sad_reaction .= '<span class="wpac-reaction-icon"><img src="'.WPAC_PLUGIN_DIR.'/assets/img/emoji_sad_1.png" alt="Like Reaction"></span>';
+                    } else {
+                        $sad_reaction .= '<span class="wpac-reaction-icon"><i class="far fa-sad-tear"></i></span>';
+                    }
                     if($hide_reaction_stats != "on") {
                         $sad_reaction .= '<span class="wpac-reaction-count">'.$sad_reactions.'</span>';
                     }
@@ -129,7 +146,11 @@ function wpac_reactions_system($content) {
             $angry_reaction = '<div class="wpac-reaction-icon-box wpac-angry-reaction">';
                 $angry_reaction .= '<a href="javascript:" onclick="wpac_save_reaction_ajax('.$post_id.',6)" class="wpac-reaction">';
 
-                    $angry_reaction .= '<span class="wpac-reaction-icon"><i class="far fa-angry"></i></span>';
+                    if($reactions_style == 2){
+                        $angry_reaction .= '<span class="wpac-reaction-icon"><img src="'.WPAC_PLUGIN_DIR.'/assets/img/emoji_angry_1.png" alt="Like Reaction"></span>';
+                    } else {
+                        $angry_reaction .= '<span class="wpac-reaction-icon"><i class="far fa-angry"></i></span>';
+                    }
                     if($hide_reaction_stats != "on") {
                         $angry_reaction .= '<span class="wpac-reaction-count">'.$angry_reactions.'</span>';
                     }

@@ -88,18 +88,16 @@ function wpac_reaction_style_cb(){
         switch($setting) {
 
             case 1:
-                echo '<option value="1">Simple</option>';
-                echo '<option value="2">Colorful</option>';
+                echo '<option value="1">Font Icons</option>';
+                echo '<option value="2">Emoticons</option>';
                 break;
             case 2:
-                echo '<option value="2">Colorful</option>';
-                echo '<option value="1">Simple</option>';
+                echo '<option value="2">Emoticons</option>';
+                echo '<option value="1">Font Icons</option>';
                 break;
-
             default: 
-                echo '<option value="1">Simple</option>';
-                echo '<option value="2">Colorful</option>';
-            
+                echo '<option value="1">Font Icons</option>';
+                echo '<option value="2">Emoticons</option>';
         }
         ?>
     </select>

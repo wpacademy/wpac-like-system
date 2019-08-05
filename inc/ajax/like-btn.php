@@ -1,38 +1,48 @@
 <?php
 function wpac_like_btn_ajax_action() {
 
-    if(isset($_POST['pid']) && isset($_POST['uid']) && wpac_check_post_id($_POST['pid']) && wpac_check_user($_POST['uid'])) {
+    $success_text = get_option('wpac_status_message_liked', 'Your Like is Saved Successfully');
+    $error_text_liked = get_option('wpac_status_error_liked', 'Sorry, you already liked this post');
+    $error_text_general = get_option('wpac_status_message_error_general', 'There was an unknown error. Please contact Webmaster');
+    $error_text_login = get_option('wpac_status_message_error_login', 'You must be logged-in to like this post');
 
-        $user_id = intval($_POST['uid']);
-        $post_id = intval($_POST['pid']);
+    if(isset($_POST['uid']) && wpac_check_user($_POST['uid'])) {
+        if(isset($_POST['pid']) && wpac_check_post_id($_POST['pid'])) {
 
-        if( !$user_id ) {
-            $user_id = '';
-        }
-        if( !$post_id ) {
-            $post_id = '';
-        }
-        if ( strlen( $user_id ) > 10 ) {
-            $user_id = substr( $user_id, 0, 10 );
-        }
-        if ( strlen( $post_id ) > 10 ) {
-            $post_id = substr( $post_id, 0, 10 );
-        }
+            $user_id = intval($_POST['uid']);
+            $post_id = intval($_POST['pid']);
 
-        $check_like = wpac_check_like($post_id, $user_id);
-        $check_dislike = wpac_check_deslike($post_id, $user_id);
-        if($check_like > 0 || $check_dislike > 0) {
-            _e("Sorry, you already liked/disliked this post or you are not logged-in","wpacademy-likedisklike");
-        }
-        else {
-            $insert_like = wpac_insert_new_like($user_id, $post_id);
-            if($insert_like == 1) {
-                _e("Thank you for likig this post","wpacademy-likedisklike");
-            } else {
-                _e("There was an error adding your like count, please try again or contact webmaster!","wpacademy-likedisklike");
+            if( !$user_id ) {
+                $user_id = '';
             }
+            if( !$post_id ) {
+                $post_id = '';
+            }
+            if ( strlen( $user_id ) > 10 ) {
+                $user_id = substr( $user_id, 0, 10 );
+            }
+            if ( strlen( $post_id ) > 10 ) {
+                $post_id = substr( $post_id, 0, 10 );
+            }
+
+            $check_like = wpac_check_like($post_id, $user_id);
+            $check_dislike = wpac_check_deslike($post_id, $user_id);
+            
+            if($check_like > 0 || $check_dislike > 0) {
+                echo esc_textarea( $error_text_liked );
+            }
+            else {
+                $insert_like = wpac_insert_new_like($user_id, $post_id);
+                if($insert_like == 1) {
+                    echo esc_textarea( $success_text );
+                } else {
+                    echo esc_textarea( $error_text_general );
+                }
+            }
+            
         }
-        
+    } else {
+        echo esc_textarea( $error_text_login );
     }
     wp_die();
 }

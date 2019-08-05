@@ -2,14 +2,21 @@
 function wpac_plugin_settings(){
 
     // register settings for "wpac-settings" page
-    register_setting( 'wpac-settings', 'wpac_system_type' ,['default' => '1']);
+    register_setting( 'wpac-settings', 'wpac_system_type', ['default' => '1']);
+    register_setting( 'wpac-settings', 'wpac_status_message_liked', ['default' => 'Your Like is Saved Successfully']);
+    register_setting( 'wpac-settings', 'wpac_status_error_liked', ['default' => 'Sorry, you already liked this post']);
+    register_setting( 'wpac-settings', 'wpac_status_message_disliked', ['default' => 'Your Dislike is Saved Successfully']);
+    register_setting( 'wpac-settings', 'wpac_status_error_disliked', ['default' => 'You have already Disliked this post']);
+    register_setting( 'wpac-settings', 'wpac_status_message_reaction', ['default' => 'Your reaction is saved successfully']);
+    register_setting( 'wpac-settings', 'wpac_status_message_error_login', ['default' => 'You must be logged-in to like or dislike this post']);
+    register_setting( 'wpac-settings', 'wpac_status_message_error_general', ['default' => 'There was an unknown error. Please contact Webmaster']);
 
     register_setting( 'wpac-button-settings', 'wpac_like_btn_label', ['default' => 'Like']);
     register_setting( 'wpac-button-settings', 'wpac_dislike_btn_label', ['default' => 'Dislike']);
     register_setting( 'wpac-button-settings', 'wpac_button_position', ['default' => '2']);
     register_setting( 'wpac-button-settings', 'wpac_hide_like_button', ['default' => 'off']);
     register_setting( 'wpac-button-settings', 'wpac_hide_dislike_button', ['default' => 'off']);
-    register_setting( 'wpac-button-settings', 'wpac_stats_position', ['default' => '1']);
+    register_setting( 'wpac-button-settings', 'wpac_like_dislike_count', ['default' => 'on']);
 
     register_setting( 'wpac-reaction-settings', 'wpac_reaction_position', ['default' => '2']);
     register_setting( 'wpac-reaction-settings', 'wpac_reaction_style', ['default' => '1']);
@@ -27,6 +34,12 @@ function wpac_plugin_settings(){
         'wpac_general_settings_section',
         'General Settings',
         'wpac_general_settings_section_cb',
+        'wpac-settings'
+    );
+    add_settings_section(
+        'wpac_status_texts_section',
+        'Status & Error Texts',
+        'wpac_status_texts_section_cb',
         'wpac-settings'
     );
     add_settings_section(
@@ -63,7 +76,56 @@ function wpac_plugin_settings(){
         'wpac-settings',
         'wpac_general_settings_section' 
     );
-
+    //Status & Error Texts
+    add_settings_field( 
+        'wpac_status_message_liked',
+        'Liked Success',
+        'wpac_status_message_liked_cb',
+        'wpac-settings',
+        'wpac_status_texts_section' 
+    );
+    add_settings_field( 
+        'wpac_status_error_liked',
+        'Liked Error',
+        'wpac_status_error_liked_cb',
+        'wpac-settings',
+        'wpac_status_texts_section' 
+    );
+    add_settings_field( 
+        'wpac_status_message_disliked',
+        'Disliked Success',
+        'wpac_status_message_disliked_cb',
+        'wpac-settings',
+        'wpac_status_texts_section' 
+    );
+    add_settings_field( 
+        'wpac_status_error_disliked',
+        'Disliked Error',
+        'wpac_status_error_disliked_cb',
+        'wpac-settings',
+        'wpac_status_texts_section' 
+    );
+    add_settings_field( 
+        'wpac_status_message_reaction',
+        'Reaction Saved',
+        'wpac_status_message_reaction_cb',
+        'wpac-settings',
+        'wpac_status_texts_section' 
+    );
+    add_settings_field( 
+        'wpac_status_message_error_login',
+        'Login Error',
+        'wpac_status_message_error_login_cb',
+        'wpac-settings',
+        'wpac_status_texts_section' 
+    );
+    add_settings_field( 
+        'wpac_status_message_error_general',
+        'General Error',
+        'wpac_status_message_error_general_cb',
+        'wpac-settings',
+        'wpac_status_texts_section' 
+    );
     // Button Label Fields
     add_settings_field(
         'wpac_like_label_field',
@@ -103,9 +165,9 @@ function wpac_plugin_settings(){
         'wpac_button_settings_section'
     );
     add_settings_field( 
-        'wpac_stats_position',
-        'Like & Dislike Count Position',
-        'wpac_stats_position_cb',
+        'wpac_like_dislike_count',
+        'Show Like & Dislike Count?',
+        'wpac_like_dislike_count_cb',
         'wpac-button-settings',
         'wpac_button_settings_section' 
     );
@@ -188,6 +250,9 @@ add_action('admin_init', 'wpac_plugin_settings');
 // Section callback functions
 function wpac_general_settings_section_cb(){
     _e('<p>General Settings for WPAC</p>', 'wpaclike');
+}
+function wpac_status_texts_section_cb(){
+    _e('<p>Plugin Generated Status & Error Texts. Modify them as you like</p>', 'wpaclike');
 }
 function wpac_label_settings_section_cb(){
     _e('<p>Define Button Labels</p>', 'wpaclike');

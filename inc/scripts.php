@@ -3,6 +3,10 @@
 if( !function_exists('wpac_plugin_scripts')) {
     function wpac_plugin_scripts() {
         $user_id = get_current_user_id();
+
+        //jQuery
+        wp_enqueue_script( 'jquery');
+
         //Plugin Frontend CSS
         wp_enqueue_style('wpac-css', WPAC_PLUGIN_DIR. 'assets/css/front-end.css');
 
