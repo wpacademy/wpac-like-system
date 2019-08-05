@@ -32,9 +32,9 @@ You can change button labels and other settings by visiting `WPAC Settings` Tab
 
 
 ## Changelog
-
+4. 2.0.3 -  Fixed new reaction icons
 3. 2.0.2
-    *Added new reaction styles (emojis).
+    * Added new reaction styles (emojis).
     * Added option to change success and error strings
     * upgraded database for future updates to features
     * like and dislike count now updates without page reload
