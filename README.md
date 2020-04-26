@@ -1,8 +1,11 @@
-# WPAC Like & Reaction System
-Simple Like &amp; Dislike Plugin for WordPress. :v:
+# WPAC Social Tools - Like, React & Share
+The Most Simple WordPress Post Like, Dislike &amp; Reaction System with Social Sharing.. :v:
 
-This plugin was created during basic course of <a href="https://wpacademy.pk/course/wordpress-plugin-development-for-beginners-in-urdu-hindi/" target="_blank">Plugin Development in Urdu</a>. Later we decided to distribute this code so students can use it and even try to improve it for educational purpose.
-Not Only Like System, this plugin now has a Reaction System as well. Add beautiful reactions to your blog posts or pages.
+This will add powerful social features to your WordPress website. Engage with your website visitors by giving them the opportunity to react with your content. This plugin will all like dislike buttons with like vs dislike bar or you can add emoji reactions like Facebook.
+Both visitors and logged-in members can react to your posts. Not only reactions but a social sharing bar as well so no more different plugins.
+This plugin also has a widget to show most liked or disliked posts anywhere you like.
+
+This plugin is my first project, so feel free to provide feedback via support forums. You can also contribute to help me improve this open-source project.
 
 ## Installation
 
@@ -32,6 +35,14 @@ You can change button labels and other settings by visiting `WPAC Settings` Tab
 
 
 ## Changelog
+5. 3.0.0
+    * New Feature: Now non-logged-in users can also like/dislike or React.
+    * New Feature: Liked vs Dislike bar.
+    * New Feature: Social Sharing Bar.
+    * New Widget: Now you can show most liked/disliked posts anywhere with the new widget.
+    * Reactions count now updated without reloading the page.
+    * Improvements in code.
+    * CSS bug fixes.
 4. 2.0.3 -  Fixed new reaction icons
 3. 2.0.2
     * Added new reaction styles (emojis).
