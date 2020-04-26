@@ -1,12 +1,14 @@
 <?php
 $btns_position = get_option('wpac_button_position', '2');
 function wpac_like_dislike_buttons($content) {
-
+    
+    $wpac_db = new WPAC_DB;
     // Get display & position settings for buttons
     $btns_position = get_option('wpac_button_position', '2');
     $like_btn_hide = get_option('wpac_hide_like_button', 'off');
     $dislike_btn_hide = get_option('wpac_hide_dislike_button', 'off');
     $like_dislike_count = get_option('wpac_like_dislike_count', 'on');
+    $like_dislike_vs_bar = get_option('wpac_like_dislike_vs_bar', 'on');
 
     // Fetch labels for buttons
     $like_btn_label = get_option( 'wpac_like_btn_label', 'Like' );
@@ -14,9 +16,30 @@ function wpac_like_dislike_buttons($content) {
 
     $user_id = get_current_user_id();
     $post_id = get_the_ID();
-    $like_count = wpac_count_likes($post_id);
+
+    $like_count = $wpac_db->wpac_count_likes($post_id);
+    $dislike_count = $wpac_db->wpac_count_dislikes($post_id);
+    
+    if($like_count > 0) {
+        $like_count = $wpac_db->wpac_count_likes($post_id);
+    } else {
+        $like_count = 0;
+    }
+    if($dislike_count > 0) {
+        $dislike_count = $wpac_db->wpac_count_dislikes($post_id);
+    } else {
+        $dislike_count = 0;
+    }
+
+    if($like_count > 0) {
+        $like_percent = ($like_count - $dislike_count) / $like_count * 100;
+        $dislike_percent = 100 - $like_percent;
+    } else {
+        $like_percent = 0;
+        $dislike_percent = 0;
+    }
+    
     $like_count = wpac_format_reaction_numbers($like_count);
-    $dislike_count = wpac_count_dislikes($post_id);
     $dislike_count  = wpac_format_reaction_numbers($dislike_count);
 
     // Make sure single post is being viewed.
@@ -50,6 +73,7 @@ function wpac_like_dislike_buttons($content) {
         $btns_wrap_end = '</div>';
 
         $wpac_ajax_response = '<div id="wpacAjaxResponse" class="wpac-ajax-response"><span></span></div>';
+        $wpac_vs_progress_bar = '<div class="wpac-vs-bar-container"><div id="wpac-vsBar-likes" style="width:'.$like_percent.'%; min-width: 140px">'.$like_percent.'% Likes<span class="wpac-bar-vs-badge">VS</span></div><div id="wpac-vsBar-dislikes" style="width:'.$dislike_percent.'%; min-width: 140px">'.$dislike_percent.'% Dislikes</div></div>';
 
         if(isset($btns_position) && $btns_position == 1) {
 
@@ -67,6 +91,11 @@ function wpac_like_dislike_buttons($content) {
             $before_content_btns .= $btns_wrap_end;
             $before_content_btns .= $wpac_ajax_response;
             
+            if(isset($like_dislike_vs_bar) && $like_dislike_vs_bar == "on") {
+                $before_content_btns .= $wpac_vs_progress_bar;
+            }
+            
+            
             $content = $before_content_btns . $content;
 
         } else {
@@ -82,6 +111,7 @@ function wpac_like_dislike_buttons($content) {
             $content .= $dislike_btn;
             $content .= $btns_wrap_end;
             $content .= $wpac_ajax_response;
+            $content .= $wpac_vs_progress_bar;
 
         }
     }

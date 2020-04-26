@@ -23,6 +23,30 @@ function wpac_system_type_cb(){
     </select>
     <?php
 }
+function wpac_save_type_cb(){ 
+    // get the value of the setting we've registered with register_setting()
+    $setting = get_option('wpac_save_type');
+    // output the field
+    ?>
+    <select name="wpac_save_type">
+        <?php 
+            switch($setting){
+                case 1:
+                    echo '<option value="1">Only Logged-in Users</option>';
+                    echo '<option value="2">Logged-in + Visitors</option>';
+                    break;
+                case 2:
+                    echo '<option value="2">Logged-in + Visitors</option>';
+                    echo '<option value="1">Only Logged-in Users</option>';
+                    break;
+                default:
+                    echo '<option value="1">Only Logged-in Users</option>';
+                    echo '<option value="2">Logged-in + Visitors</option>';
+            }
+        ?>
+    </select>
+    <?php
+}
 //Error Messages and Status Text
 function wpac_status_message_liked_cb(){ 
     // get the value of the setting we've registered with register_setting()

@@ -3,6 +3,7 @@ function wpac_plugin_settings(){
 
     // register settings for "wpac-settings" page
     register_setting( 'wpac-settings', 'wpac_system_type', ['default' => '1']);
+    register_setting( 'wpac-settings', 'wpac_save_type', ['default' => '1']);
     register_setting( 'wpac-settings', 'wpac_status_message_liked', ['default' => 'Your Like is Saved Successfully']);
     register_setting( 'wpac-settings', 'wpac_status_error_liked', ['default' => 'Sorry, you already liked this post']);
     register_setting( 'wpac-settings', 'wpac_status_message_disliked', ['default' => 'Your Dislike is Saved Successfully']);
@@ -11,13 +12,16 @@ function wpac_plugin_settings(){
     register_setting( 'wpac-settings', 'wpac_status_message_error_login', ['default' => 'You must be logged-in to like or dislike this post']);
     register_setting( 'wpac-settings', 'wpac_status_message_error_general', ['default' => 'There was an unknown error. Please contact Webmaster']);
 
+    //Register Settings for "wpac-button-settings" page
     register_setting( 'wpac-button-settings', 'wpac_like_btn_label', ['default' => 'Like']);
     register_setting( 'wpac-button-settings', 'wpac_dislike_btn_label', ['default' => 'Dislike']);
     register_setting( 'wpac-button-settings', 'wpac_button_position', ['default' => '2']);
     register_setting( 'wpac-button-settings', 'wpac_hide_like_button', ['default' => 'off']);
     register_setting( 'wpac-button-settings', 'wpac_hide_dislike_button', ['default' => 'off']);
     register_setting( 'wpac-button-settings', 'wpac_like_dislike_count', ['default' => 'on']);
+    register_setting( 'wpac-button-settings', 'wpac_like_dislike_vs_bar', ['default' => 'on']);
 
+    //Register Settings for "wpac-reaction-settings" page
     register_setting( 'wpac-reaction-settings', 'wpac_reaction_position', ['default' => '2']);
     register_setting( 'wpac-reaction-settings', 'wpac_reaction_style', ['default' => '1']);
     register_setting( 'wpac-reaction-settings', 'wpac_hide_reaction_count', ['default' => 'off']);
@@ -28,6 +32,10 @@ function wpac_plugin_settings(){
     register_setting( 'wpac-reaction-settings', 'wpac_reaction_4_label', ['default' => 'Shocked']);
     register_setting( 'wpac-reaction-settings', 'wpac_reaction_5_label', ['default' => 'Sad']);
     register_setting( 'wpac-reaction-settings', 'wpac_reaction_6_label', ['default' => 'Angry']);
+
+    //Register Settings for "wpac-sharing-settings" page
+    register_setting( 'wpac-sharing-settings', 'wpac_sharing_desktop_position', ['default' => '1']);
+    register_setting( 'wpac-sharing-settings', 'wpac_sharing_mobile_position', ['default' => '3']);
 
     // register a new section in the "wpac-setings" page
     add_settings_section(
@@ -66,6 +74,12 @@ function wpac_plugin_settings(){
         'wpac_reaction_labels_section_cb',
         'wpac-reaction-settings'
     );
+    add_settings_section(
+        'wpac_sharing_setting_section',
+        'Sharing Bar Position',
+        'wpac_sharing_setting_section_cb',
+        'wpac-sharing-settings'
+    );
     // register fields for settings in "wpac-settings" page
 
     //System Type
@@ -73,6 +87,14 @@ function wpac_plugin_settings(){
         'wpac_system_type',
         'System Type',
         'wpac_system_type_cb',
+        'wpac-settings',
+        'wpac_general_settings_section' 
+    );
+    //Save Type
+    add_settings_field( 
+        'wpac_save_type',
+        'Who Can Like/React',
+        'wpac_save_type_cb',
         'wpac-settings',
         'wpac_general_settings_section' 
     );
@@ -171,6 +193,13 @@ function wpac_plugin_settings(){
         'wpac-button-settings',
         'wpac_button_settings_section' 
     );
+    add_settings_field( 
+        'wpac_like_dislike_vs_bar',
+        'Show Like vs Dislike Bar?',
+        'wpac_like_dislike_vs_bar_cb',
+        'wpac-button-settings',
+        'wpac_button_settings_section' 
+    );
 
     //Reactions Icon Labels
     add_settings_field(
@@ -244,6 +273,21 @@ function wpac_plugin_settings(){
         'wpac-reaction-settings',
         'wpac_reaction_settings_section'
     );
+    //Sharing Bar Display & Position
+    add_settings_field(
+        'wpac_sharing_desktop_position',
+        'Sharing Bar Position: Desktop',
+        'wpac_sharing_desktop_position_cb',
+        'wpac-sharing-settings',
+        'wpac_sharing_setting_section'
+    );
+    add_settings_field(
+        'wpac_sharing_mobile_position',
+        'Sharing Bar Position: Mobile',
+        'wpac_sharing_mobile_position_cb',
+        'wpac-sharing-settings',
+        'wpac_sharing_setting_section'
+    );
 }
 add_action('admin_init', 'wpac_plugin_settings');
 
@@ -265,4 +309,7 @@ function wpac_reaction_settings_section_cb(){
 }
 function wpac_reaction_labels_section_cb(){
     _e('<p>Manage Reaction Icons Position</p>', 'wpaclike');
+}
+function wpac_sharing_setting_section_cb(){
+    _e('<p>Manage Sharing Icons Position</p>', 'wpaclike');
 }

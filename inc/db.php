@@ -12,12 +12,13 @@ function wpac_create_db_tables() {
 
         $sql = "CREATE TABLE $table_name (
             id mediumint(9) NOT NULL AUTO_INCREMENT,
-            time timestamp DEFAULT '0000-00-00 00:00:00' NOT NULL,
             user_id mediumint(9) NOT NULL,
             post_id mediumint(9) NOT NULL,
             like_count mediumint(9) NOT NULL,
             dislike_count mediumint(9) NOT NULL,
             cookie_id mediumint(10),
+            user_ip varchar(50),
+            time timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
             PRIMARY KEY  (id)
         ) $charset_collate;";
         dbDelta( $sql );
@@ -27,7 +28,8 @@ function wpac_create_db_tables() {
             post_id mediumint(9) NOT NULL,
             reaction_id mediumint(9) NOT NULL,
             cookie_id mediumint(10),
-            time timestamp DEFAULT '0000-00-00 00:00:00' NOT NULL,
+            user_ip varchar(50),
+            time timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
             PRIMARY KEY  (id)
         ) $charset_collate;";
 
@@ -40,12 +42,13 @@ function wpac_create_db_tables() {
             require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
             $sql = "CREATE TABLE $table_name (
                 id mediumint(9) NOT NULL AUTO_INCREMENT,
-                time timestamp DEFAULT '0000-00-00 00:00:00' NOT NULL,
                 user_id mediumint(9) NOT NULL,
                 post_id mediumint(9) NOT NULL,
                 like_count mediumint(9) NOT NULL,
                 dislike_count mediumint(9) NOT NULL,
                 cookie_id mediumint(10),
+                user_ip varchar(50),
+                time timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
                 PRIMARY KEY  (id)
             ) $charset_collate;";
             dbDelta( $sql );
@@ -55,7 +58,8 @@ function wpac_create_db_tables() {
                 post_id mediumint(9) NOT NULL,
                 reaction_id mediumint(9) NOT NULL,
                 cookie_id mediumint(10),
-                time timestamp DEFAULT '0000-00-00 00:00:00' NOT NULL,
+                user_ip varchar(50),
+                time timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
                 PRIMARY KEY  (id)
             ) $charset_collate;";
     

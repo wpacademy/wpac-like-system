@@ -24,3 +24,6 @@ require plugin_dir_path( __FILE__ ). 'setting-fields/buttons.php';
 
 // Reactions Setting Page Form Fields
 require plugin_dir_path( __FILE__ ). 'setting-fields/reactions.php';
+
+// Sharing Setting Page Form Fields
+require plugin_dir_path( __FILE__ ). 'setting-fields/sharing.php';

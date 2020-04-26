@@ -1,7 +1,7 @@
 /*
 * WPAC Like System Front-end CSS
 */
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 .wpac-buttons-container, .wpac-reactions-container {
     width: 100%;
     clear: both;
@@ -154,14 +154,14 @@
     color: inherit;
 }
 .wpac-flat-btn .wpac-btn-icon {
-    padding: 20px 30px;
+    padding: 10px 30px;
     font-size: 20px;
     float: left;
     height: 100%;
 }
 .wpac-flat-btn .wpac-btn-label {
     margin-left: 5px;
-    padding: 20px;
+    padding: 10px 20px;
     font-size: 20px;
     float: left;
     height: 100%;
@@ -245,6 +245,246 @@
     border: 1px solid #cccccc;
     font-family: "Roboto", sans-serif;
 }
+.wpac-vs-bar-container {
+    width: 100%;
+    clear: both;
+    display: flex;
+    padding: 0 5px;
+    align-items: center;
+    margin-bottom: 1em;
+}
+.wpac-vs-bar-container > div {
+    text-align: center;
+    color: #ffffff;
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    position: relative;
+    height: 26px;
+    line-height: 26px;
+    padding: 0 20px;
+}
+.wpac-vs-bar-container #wpac-vsBar-likes {
+    background-color: #75af05;
+}
+.wpac-vs-bar-container #wpac-vsBar-dislikes {
+    background-color: #dc3e19;
+}
+.wpac-vs-bar-container .wpac-bar-vs-badge {
+    width: 40px;
+    height: 40px;
+    background-color: #333333;
+    color: #ffffff;
+    font-size: 15px;
+    text-align: center;
+    line-height: 36px;
+    position: absolute;
+    right: -20px;
+    top: -8px;
+    border-radius: 50%;
+    z-index: 2;
+    border:3px solid #ffffff;
+}
+/*--------------------------------
+* WPAC Widgets CSS
+--------------------------------*/
+.wpac-widget-title {
+    font-size: 22px;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 1;
+    border-bottom: 3px solid #333333;
+    color: #ffffff;
+}
+.wpac-widget-content {
+    padding: 10px;
+    background-color: #ffffff;
+    padding-top: 1em;
+}
+.wpac-widget-title span{
+    padding: 15px 20px 10px 20px;
+    background-color: #333333;
+    display: inline-block;
+}
+.wpac-widget-posts-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+    padding-left: 10px;
+}
+.wpac-widget-post-thumb {
+    position: relative;
+    min-width: 70px;
+    max-width: 70px;
+}
+.wpac-widget-post-thumb img {
+    width: 100%;
+}
+.wpac-post-thumb-badge {
+    position: absolute;
+    left: -10px;
+    top: 5px;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    font-size: 14px;
+    text-align: center;
+    line-height: 25px;
+    background: #333333;
+    color: #ffffff;
+    z-index: 1;
+    border-radius: 2px;
+}
+.wpac-post-thumb-badge.badge-1 { background: #73a517;}
+.wpac-post-thumb-badge.badge-2 { background: #83a515;}
+.wpac-post-thumb-badge.badge-3 { background: #a1a410;}
+.wpac-post-thumb-badge.badge-4 { background: #d0a008;}
+.wpac-post-thumb-badge.badge-5 { background: #f19702;}
+.wpac-post-thumb-badge.badge-6 { background: #ff8d00;}
+.wpac-post-thumb-badge.badge-7 { background: #ff7800;}
+.wpac-post-thumb-badge.badge-8 { background: #ff6200;}
+.wpac-post-thumb-badge.badge-9 { background: #ff4400;}
+.wpac-post-thumb-badge.badge-10 { background: #ff2c00;}
+
+.wpac-widget-post-title {
+    margin-left: 10px;
+    line-height: 1;
+}
+.wpac-widget-post-title h3 {
+    font-size: 18px;
+    font-family: "Roboto", sans-serif;
+    line-height: 1.2;
+    margin: 0;
+    font-weight: 500;
+}
+.wpac-widget-post-title h3 a {
+    color: #222222;
+    transition: 0.5s all;
+}
+.wpac-widget-post-title h3 a:hover {
+    text-decoration: none;
+    color: royalblue;
+}
+.wpac-widget-liked-count {
+    font-size: 12px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    color: #666666;
+}
+/*--------------------------------
+* WPAC Social Bar CSS
+--------------------------------*/
+.wpac-social-bar {
+    display: flex;
+    position: fixed;
+    z-index: 999;
+    top: auto;
+}
+.wpac-social-bar .wpac-share-icon {
+    padding: 10px 20px;
+    font-size: 22px;
+    color: #ffffff;
+    background-color: #333333;
+    text-align: center;
+    position: relative;
+}
+.wpac-social-bar .wpac-share-icon:hover {
+    position: relative;
+}
+.wpac-social-bar .wpac-share-icon.fb {background-color: #3B5998;}
+.wpac-social-bar .wpac-share-icon.tw {background-color: #2EA6DE;}
+.wpac-social-bar .wpac-share-icon.wa {background-color: #57BB63;}
+.wpac-social-bar .wpac-share-icon.em {background-color: #DA4636;}
+@media screen and (min-width:  768px){
+    .wpac-social-bar.desktop-left, .wpac-social-bar.desktop-right {
+        flex-direction: column;
+        top: 50%;
+        height: 240px;
+        margin-top: -120px;
+    }
+    .wpac-social-bar.desktop-left {
+        left: 0;
+        top: 50%;
+    }
+    .wpac-social-bar.desktop-right {
+        right: 0;
+        top: 50%;
+    }
+    .wpac-social-bar.desktop-bottom {
+        bottom: 0;
+        top: auto;
+        left: 50%;
+        margin-left: -120px;
+        width: 240px;
+        flex-direction: row;
+        height: 60px;
+    }
+    .wpac-social-bar.desktop-left .wpac-share-icon:hover  {
+        border-left: 10px solid;
+        left: 10px;
+        margin-left: -10px;
+    }
+    .wpac-social-bar.desktop-right .wpac-share-icon:hover  {
+        border-right: 10px solid;
+        right: 10px;
+        margin-right: -10px;
+    }
+    .wpac-social-bar.desktop-bottom .wpac-share-icon:hover  {
+        border-bottom: 10px solid;
+        bottom: 10px;
+        margin-bottom: -10px;
+    }
+}
+@media screen and (max-width:  768px){
+    .wpac-social-bar.mobile-left, .wpac-social-bar.mobile-right {
+        flex-direction: column;
+        top: 50%;
+        height: 240px;
+        margin-top: -120px;
+    }
+    .wpac-social-bar.mobile-left {
+        left: 0;
+        top: 50%;
+    }
+    .wpac-social-bar.mobile-right {
+        right: 0;
+        top: 50%;
+    }
+    .wpac-social-bar.mobile-bottom {
+        bottom: 0;
+        top: auto;
+        left: 0;
+        margin-left: 0;
+        width: 100%;
+        flex-direction: row;
+        height: 60px;
+    }
+    .wpac-social-bar.mobile-left .wpac-share-icon:hover  {
+        border-left: 10px solid;
+        left: 10px;
+        margin-left: -10px;
+    }
+    .wpac-social-bar.mobile-right .wpac-share-icon:hover  {
+        border-right: 10px solid;
+        right: 10px;
+        margin-right: -10px;
+    }
+    .wpac-social-bar.mobile-bottom .wpac-share-icon:hover  {
+        border-bottom: 10px solid;
+        bottom: 10px;
+        margin-bottom: -10px;
+    }
+    .wpac-social-bar.mobile-bottom .wpac-share-icon {
+        flex: 1;
+        margin-left: -1px;
+    }
+}
+
+
+/*--------------------------------
+* WPAC Responsive CSS
+--------------------------------*/
 @media all and (max-width: 768px){
     .wpac-btn-container {
         width: 100%;

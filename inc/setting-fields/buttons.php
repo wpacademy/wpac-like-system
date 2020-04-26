@@ -94,3 +94,15 @@ function wpac_like_dislike_count_cb(){
     <input type="checkbox" name="wpac_like_dislike_count" <?php echo ( $check_status )?>>
     <?php
 }
+function wpac_like_dislike_vs_bar_cb(){ 
+    // get the value of the setting we've registered with register_setting()
+    $setting = get_option('wpac_like_dislike_vs_bar');
+    $check_status = "";
+    if(isset($setting) & $setting == "on") {
+        $check_status = "checked";
+    }
+    // output the field
+    ?>
+    <input type="checkbox" name="wpac_like_dislike_vs_bar" <?php echo ( $check_status )?>>
+    <?php
+}

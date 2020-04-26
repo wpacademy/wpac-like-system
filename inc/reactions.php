@@ -2,6 +2,7 @@
 $btns_position = get_option('wpac_reaction_position', '2');
 function wpac_reactions_system($content) {
 
+    $wpac_db = new WPAC_DB;
     // Get display & position settings for reactoions
     $btns_position = get_option('wpac_reaction_position', '2');
     $reactions_style = get_option('wpac_reaction_style', '1');
@@ -20,23 +21,24 @@ function wpac_reactions_system($content) {
     $user_id = get_current_user_id();
     $post_id = get_the_ID();
 
-    $like_reactions = wpac_reaction_count($post_id, 1);
+    $like_reactions = $wpac_db->wpac_reaction_count($post_id, 1);
     $like_reactions = wpac_format_reaction_numbers($like_reactions);
 
-    $heart_reactions = wpac_reaction_count($post_id, 2);
+    $heart_reactions = $wpac_db->wpac_reaction_count($post_id, 2);
     $heart_reactions = wpac_format_reaction_numbers($heart_reactions);
 
-    $laugh_reactions = wpac_reaction_count($post_id, 3);
+    $laugh_reactions = $wpac_db->wpac_reaction_count($post_id, 3);
     $laugh_reactions = wpac_format_reaction_numbers($laugh_reactions);
 
-    $amazed_reactions = wpac_reaction_count($post_id, 4);
+    $amazed_reactions = $wpac_db->wpac_reaction_count($post_id, 4);
     $amazed_reactions = wpac_format_reaction_numbers($amazed_reactions);
 
-    $sad_reactions = wpac_reaction_count($post_id, 5);
+    $sad_reactions = $wpac_db->wpac_reaction_count($post_id, 5);
     $sad_reactions = wpac_format_reaction_numbers($sad_reactions);
 
-    $angry_reactions = wpac_reaction_count($post_id, 6);
+    $angry_reactions = $wpac_db->wpac_reaction_count($post_id, 6);
     $angry_reactions = wpac_format_reaction_numbers($angry_reactions);
+
 
     // Make sure single post is being viewed.
     if(is_single()) {
@@ -57,7 +59,7 @@ function wpac_reactions_system($content) {
                         $like_reaction .= '<span class="wpac-reaction-icon"><i class="far fa-smile"></i></span>';
                     }
                     if($hide_reaction_stats != "on") {
-                        $like_reaction .= '<span class="wpac-reaction-count">'.$like_reactions.'</span>';
+                        $like_reaction .= '<span id="wpacR1" class="wpac-reaction-count">'.$like_reactions.'</span>';
                     }
                     if($hide_reaction_label != "on") {
                         $like_reaction .= '<span class="wpac-reation-tooltip">'.$reaction_label_1.'</span>';
@@ -76,7 +78,7 @@ function wpac_reactions_system($content) {
                         $love_reaction .= '<span class="wpac-reaction-icon"><i class="far fa-grin-hearts"></i></span>';
                     }
                     if($hide_reaction_stats != "on") {
-                        $love_reaction .= '<span class="wpac-reaction-count">'.$heart_reactions.'</span>';
+                        $love_reaction .= '<span id="wpacR2" class="wpac-reaction-count">'.$heart_reactions.'</span>';
                     }
                     if($hide_reaction_label != "on") {
                         $love_reaction .= '<span class="wpac-reation-tooltip">'.$reaction_label_2.'</span>';
@@ -95,7 +97,7 @@ function wpac_reactions_system($content) {
                         $laugh_reaction .= '<span class="wpac-reaction-icon"><i class="far fa-grin-squint-tears"></i></span>';
                     }
                     if($hide_reaction_stats != "on") {
-                        $laugh_reaction .= '<span class="wpac-reaction-count">'.$laugh_reactions.'</span>';
+                        $laugh_reaction .= '<span id="wpacR3" class="wpac-reaction-count">'.$laugh_reactions.'</span>';
                     }
                     if($hide_reaction_label != "on") {
                         $laugh_reaction .= '<span class="wpac-reation-tooltip">'.$reaction_label_3.'</span>';
@@ -114,7 +116,7 @@ function wpac_reactions_system($content) {
                         $amazed_reaction .= '<span class="wpac-reaction-icon"><i class="far fa-flushed"></i></span>';
                     }
                     if($hide_reaction_stats != "on") {
-                        $amazed_reaction .= '<span class="wpac-reaction-count">'.$amazed_reactions.'</span>';
+                        $amazed_reaction .= '<span id="wpacR4" class="wpac-reaction-count">'.$amazed_reactions.'</span>';
                     }
                     if($hide_reaction_label != "on") {
                         $amazed_reaction .= '<span class="wpac-reation-tooltip">'.$reaction_label_4.'</span>';
@@ -133,7 +135,7 @@ function wpac_reactions_system($content) {
                         $sad_reaction .= '<span class="wpac-reaction-icon"><i class="far fa-sad-tear"></i></span>';
                     }
                     if($hide_reaction_stats != "on") {
-                        $sad_reaction .= '<span class="wpac-reaction-count">'.$sad_reactions.'</span>';
+                        $sad_reaction .= '<span id="wpacR5" class="wpac-reaction-count">'.$sad_reactions.'</span>';
                     }
                     if($hide_reaction_label != "on") {
                         $sad_reaction .= '<span class="wpac-reation-tooltip">'.$reaction_label_5.'</span>';
@@ -152,7 +154,7 @@ function wpac_reactions_system($content) {
                         $angry_reaction .= '<span class="wpac-reaction-icon"><i class="far fa-angry"></i></span>';
                     }
                     if($hide_reaction_stats != "on") {
-                        $angry_reaction .= '<span class="wpac-reaction-count">'.$angry_reactions.'</span>';
+                        $angry_reaction .= '<span id="wpacR6" class="wpac-reaction-count">'.$angry_reactions.'</span>';
                     }
                     if($hide_reaction_label != "on") {
                         $angry_reaction .= '<span class="wpac-reation-tooltip">'.$reaction_label_6.'</span>';
