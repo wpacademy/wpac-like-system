@@ -30,17 +30,27 @@ function wpac_like_dislike_buttons($content) {
     } else {
         $dislike_count = 0;
     }
-
-    if($like_count > 0) {
-        $like_percent = ($like_count - $dislike_count) / $like_count * 100;
-        $dislike_percent = 100 - $like_percent;
-    } else {
-        $like_percent = 0;
-        $dislike_percent = 0;
-    }
     
+    if($like_count > $dislike_count){
+        $like_percent = round(($like_count / ($like_count + $dislike_count)) ,2) * 100;
+        $dislike_percent = 100 - $like_percent;
+        echo "like greater";
+    }
+    if($dislike_count > $like_count) {
+        $dislike_percent = round(($dislike_count / ($dislike_count + $like_count)) ,2) * 100;
+        $like_percent = 100 - $dislike_percent;
+        echo "dislike greater";
+    }
+    //echo $dislike_percent;
+    if($like_count == $dislike_count) {
+        $like_percent = 50;
+        $dislike_percent = 50;
+    }
+    //echo $like_count;
     $like_count = wpac_format_reaction_numbers($like_count);
     $dislike_count  = wpac_format_reaction_numbers($dislike_count);
+    $like_percent = number_format($like_percent);
+    $dislike_percent = number_format($dislike_percent);
 
     // Make sure single post is being viewed.
     if(is_single()) {
