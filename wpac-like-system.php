@@ -5,7 +5,7 @@
 * Author: WPacademy.PK
 * Author URI: https://wpacademy.pk
 * Description: The Most Simple WordPress Post Like, Dislike & Reaction System. 
-* Version: 3.0.0
+* Version: 3.0.1
 * License: GPL2
 * License URI:  https://www.gnu.org/licenses/gpl-2.0.html
 * Text Domain: wpaclike
