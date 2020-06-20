@@ -83,7 +83,7 @@ function wpac_like_dislike_buttons($content) {
         $btns_wrap_end = '</div>';
 
         $wpac_ajax_response = '<div id="wpacAjaxResponse" class="wpac-ajax-response"><span></span></div>';
-        $wpac_vs_progress_bar = '<div class="wpac-vs-bar-container"><div id="wpac-vsBar-likes" style="width:'.$like_percent.'%; min-width: 140px">'.$like_percent.'% Likes<span class="wpac-bar-vs-badge">VS</span></div><div id="wpac-vsBar-dislikes" style="width:'.$dislike_percent.'%; min-width: 140px">'.$dislike_percent.'% Dislikes</div></div>';
+        $wpac_vs_progress_bar = '<div class="wpac-vs-bar-container"><div id="wpac-vsBar-likes" style="width:'.$like_percent.'%; min-width: 140px">'.$like_percent.'% '.$like_btn_label.'<span class="wpac-bar-vs-badge">VS</span></div><div id="wpac-vsBar-dislikes" style="width:'.$dislike_percent.'%; min-width: 140px">'.$dislike_percent.'% '.$dislike_btn_label.'</div></div>';
 
         if(isset($btns_position) && $btns_position == 1) {
 
