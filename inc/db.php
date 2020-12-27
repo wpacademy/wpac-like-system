@@ -19,7 +19,10 @@ function wpac_create_db_tables() {
             cookie_id mediumint(10),
             user_ip varchar(50),
             time timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-            PRIMARY KEY  (id)
+            PRIMARY KEY  (id),
+            INDEX `post_id_like_count` (`post_id`, `like_count`),
+            INDEX `post_id_dislike_count` (`post_id`, `dislike_count`),
+            INDEX `user_id_post_id` (`user_id`, `post_id`)
         ) $charset_collate;";
         dbDelta( $sql );
         $sql = "CREATE TABLE $table_name_2 (
@@ -30,7 +33,8 @@ function wpac_create_db_tables() {
             cookie_id mediumint(10),
             user_ip varchar(50),
             time timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-            PRIMARY KEY  (id)
+            PRIMARY KEY  (id),
+            INDEX `post_id_reaction_id` (`post_id`, `reaction_id`)
         ) $charset_collate;";
 
         dbDelta( $sql );
@@ -49,7 +53,10 @@ function wpac_create_db_tables() {
                 cookie_id mediumint(10),
                 user_ip varchar(50),
                 time timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-                PRIMARY KEY  (id)
+                PRIMARY KEY  (id),
+                INDEX `post_id_like_count` (`post_id`, `like_count`),
+                INDEX `post_id_dislike_count` (`post_id`, `dislike_count`),
+                INDEX `user_id_post_id` (`user_id`, `post_id`)
             ) $charset_collate;";
             dbDelta( $sql );
             $sql = "CREATE TABLE $table_name_2 (
@@ -60,7 +67,8 @@ function wpac_create_db_tables() {
                 cookie_id mediumint(10),
                 user_ip varchar(50),
                 time timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-                PRIMARY KEY  (id)
+                PRIMARY KEY  (id),
+                INDEX `post_id_reaction_id` (`post_id`, `reaction_id`)
             ) $charset_collate;";
     
             dbDelta( $sql );
