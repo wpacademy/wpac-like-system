@@ -34,12 +34,12 @@ function wpac_like_dislike_buttons( $content ) {
 	if ( $like_count > $dislike_count ) {
 		$like_percent    = round( ( $like_count / ( $like_count + $dislike_count ) ), 2 ) * 100;
 		$dislike_percent = 100 - $like_percent;
-		echo "like greater";
+//		echo "like greater";
 	}
 	if ( $dislike_count > $like_count ) {
 		$dislike_percent = round( ( $dislike_count / ( $dislike_count + $like_count ) ), 2 ) * 100;
 		$like_percent    = 100 - $dislike_percent;
-		echo "dislike greater";
+//		echo "dislike greater";
 	}
 	//echo $dislike_percent;
 	if ( $like_count == $dislike_count ) {
